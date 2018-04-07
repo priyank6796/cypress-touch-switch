@@ -1,0 +1,38 @@
+net __ONE__
+	term   ":udb@[UDB=(0,1)]:pld0:mc0.q"
+	switch ":udb@[UDB=(0,1)]:pld0:mc0.q==>:udb@[UDB=(0,1)]:pld0:output_permute3.q_0"
+	switch ":udb@[UDB=(0,1)]:pld0:output_permute3.output_3==>Stub-:udbswitch@[UDB=(0,1)][side=top]:v30"
+	switch "OStub-:udbswitch@[UDB=(0,1)][side=top]:v30"
+	switch ":udbswitch@[UDB=(0,1)][side=top]:30,0"
+	switch ":hvswitch@[UDB=(1,0)][side=left]:31,0_f"
+	switch ":hvswitch@[UDB=(0,0)][side=left]:vseg_31_bot_f"
+	switch ":hvswitch@[UDB=(0,0)][side=left]:31,29_b"
+	switch ":hvswitch@[UDB=(0,0)][side=left]:hseg_29_b"
+	switch ":dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:102,29_f"
+	switch "IStub-:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v100+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v102+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v98"
+	switch "Stub-:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v100+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v102+:dsiswitch_top@[DSI=(0,0)][side=top]:dsihc_top:v98==>:ioport4:inputs1_mux.in_2"
+	switch ":ioport4:inputs1_mux.pin2__pin_input==>:ioport4:hsiom_out2.dsi"
+	switch ":ioport4:hsiom_out2.hsiom2_out==>:ioport4:pin2.pin_input"
+	term   ":ioport4:pin2.pin_input"
+	switch ":hvswitch@[UDB=(0,0)][side=left]:31,11_b"
+	switch ":dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:116,11_f"
+	switch "IStub-:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v116+:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v118+:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v120"
+	switch "Stub-:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v116+:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v118+:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v120==>:p4csidac7cell.en"
+	term   ":p4csidac7cell.en"
+	switch ":hvswitch@[UDB=(0,0)][side=left]:31,21_b"
+	switch ":dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:111,21_f"
+	switch "IStub-:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v111+:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v113+:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v115"
+	switch "Stub-:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v111+:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v113+:dsiswitch_top@[DSI=(0,1)][side=top]:dsihc_top:v115==>:p4csidac8cell.en"
+	term   ":p4csidac8cell.en"
+end __ONE__
+net ClockBlock_HFClk
+	term   ":m0s8clockblockcell.hfclk"
+	switch ":m0s8clockblockcell.hfclk==>:interrupt_15.clock"
+	term   ":interrupt_15.clock"
+end ClockBlock_HFClk
+net \CapSense_CSD:Net_248\
+	term   ":p4csdcell.irq"
+	switch ":p4csdcell.irq==>:interrupt_idmux_15.in_0"
+	switch ":interrupt_idmux_15.interrupt_idmux_15__out==>:interrupt_15.interrupt"
+	term   ":interrupt_15.interrupt"
+end \CapSense_CSD:Net_248\

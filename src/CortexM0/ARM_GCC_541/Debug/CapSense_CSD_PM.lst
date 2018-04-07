@@ -1,0 +1,1025 @@
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"CapSense_CSD_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.CapSense_CSD_SaveConfig,"ax",%progbits
+  20              		.align	2
+  21              		.global	CapSense_CSD_SaveConfig
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	CapSense_CSD_SaveConfig, %function
+  25              	CapSense_CSD_SaveConfig:
+  26              	.LFB32:
+  27              		.file 1 "Generated_Source\\PSoC4\\CapSense_CSD_PM.c"
+   1:Generated_Source\PSoC4/CapSense_CSD_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * File Name: CapSense_CSD_PM.c
+   3:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Version 2.60
+   4:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+   5:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Description:
+   6:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  This file provides Sleep APIs for CapSense CSD Component.
+   7:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+   8:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Note:
+   9:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  10:Generated_Source\PSoC4/CapSense_CSD_PM.c **** ********************************************************************************
+  11:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Copyright 2013-2016, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *******************************************************************************/
+  16:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  17:Generated_Source\PSoC4/CapSense_CSD_PM.c **** #include "CapSense_CSD.h"
+  18:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  19:Generated_Source\PSoC4/CapSense_CSD_PM.c **** static CapSense_CSD_BACKUP_STRUCT CapSense_CSD_backup =
+  20:Generated_Source\PSoC4/CapSense_CSD_PM.c **** {
+  21:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     0x00u, /* enableState; */
+  22:Generated_Source\PSoC4/CapSense_CSD_PM.c **** };
+  23:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  24:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  25:Generated_Source\PSoC4/CapSense_CSD_PM.c **** /*******************************************************************************
+  26:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Function Name: CapSense_CSD_SaveConfig
+  27:Generated_Source\PSoC4/CapSense_CSD_PM.c **** ********************************************************************************
+  28:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  29:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Summary:
+  30:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  Saves the customer configuration of CapSense.
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 2
+
+
+  31:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  32:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Parameters:
+  33:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  None
+  34:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  35:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Return:
+  36:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  None
+  37:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  38:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Global Variables:
+  39:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  CapSense_CSD_backup - used to save the component state before entering the  sleep
+  40:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  mode and none-retention registers.
+  41:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  42:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Side Effects:
+  43:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  None
+  44:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  45:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *******************************************************************************/
+  46:Generated_Source\PSoC4/CapSense_CSD_PM.c **** void CapSense_CSD_SaveConfig(void)
+  47:Generated_Source\PSoC4/CapSense_CSD_PM.c **** {
+  28              		.loc 1 47 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  48:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     if ((CapSense_CSD_CSD_CFG_REG & CapSense_CSD_CSD_CFG_ENABLE) != 0u)
+  33              		.loc 1 48 0
+  34 0000 034B     		ldr	r3, .L3
+  35 0002 1B68     		ldr	r3, [r3]
+  36 0004 002B     		cmp	r3, #0
+  37 0006 02DA     		bge	.L1
+  49:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     {
+  50:Generated_Source\PSoC4/CapSense_CSD_PM.c ****         CapSense_CSD_backup.enableState = 1u;
+  38              		.loc 1 50 0
+  39 0008 0122     		movs	r2, #1
+  40 000a 024B     		ldr	r3, .L3+4
+  41 000c 1A70     		strb	r2, [r3]
+  42              	.L1:
+  51:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     }
+  52:Generated_Source\PSoC4/CapSense_CSD_PM.c **** }
+  43              		.loc 1 52 0
+  44              		@ sp needed
+  45 000e 7047     		bx	lr
+  46              	.L4:
+  47              		.align	2
+  48              	.L3:
+  49 0010 04000840 		.word	1074266116
+  50 0014 00000000 		.word	.LANCHOR0
+  51              		.cfi_endproc
+  52              	.LFE32:
+  53              		.size	CapSense_CSD_SaveConfig, .-CapSense_CSD_SaveConfig
+  54              		.section	.text.CapSense_CSD_Sleep,"ax",%progbits
+  55              		.align	2
+  56              		.global	CapSense_CSD_Sleep
+  57              		.code	16
+  58              		.thumb_func
+  59              		.type	CapSense_CSD_Sleep, %function
+  60              	CapSense_CSD_Sleep:
+  61              	.LFB33:
+  53:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 3
+
+
+  54:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  55:Generated_Source\PSoC4/CapSense_CSD_PM.c **** /*******************************************************************************
+  56:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Function Name: CapSense_CSD_Sleep
+  57:Generated_Source\PSoC4/CapSense_CSD_PM.c **** ********************************************************************************
+  58:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  59:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Summary:
+  60:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  Disables the Active mode power.
+  61:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  62:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Parameters:
+  63:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  None
+  64:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  65:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Return:
+  66:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  None
+  67:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  68:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Global Variables:
+  69:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  CapSense_CSD_backup - used to save the component state before entering the sleep
+  70:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  mode.
+  71:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  72:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *******************************************************************************/
+  73:Generated_Source\PSoC4/CapSense_CSD_PM.c **** void CapSense_CSD_Sleep(void)
+  74:Generated_Source\PSoC4/CapSense_CSD_PM.c **** {
+  62              		.loc 1 74 0
+  63              		.cfi_startproc
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66 0000 10B5     		push	{r4, lr}
+  67              		.cfi_def_cfa_offset 8
+  68              		.cfi_offset 4, -8
+  69              		.cfi_offset 14, -4
+  75:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     CapSense_CSD_SaveConfig();
+  70              		.loc 1 75 0
+  71 0002 FFF7FEFF 		bl	CapSense_CSD_SaveConfig
+  72              	.LVL0:
+  76:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  77:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     /* Disable interrupt */
+  78:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     CyIntDisable(CapSense_CSD_ISR_NUMBER);
+  73              		.loc 1 78 0
+  74 0006 0F20     		movs	r0, #15
+  75 0008 FFF7FEFF 		bl	CyIntDisable
+  76              	.LVL1:
+  79:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  80:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     CapSense_CSD_CSD_CFG_REG &= ~(CapSense_CSD_CSD_CFG_SENSE_COMP_EN | CapSense_CSD_CSD_CFG_SENSE_E
+  77              		.loc 1 80 0
+  78 000c 064A     		ldr	r2, .L6
+  79 000e 1168     		ldr	r1, [r2]
+  80 0010 064B     		ldr	r3, .L6+4
+  81 0012 0B40     		ands	r3, r1
+  82 0014 1360     		str	r3, [r2]
+  81:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  82:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     #if(CapSense_CSD_IDAC_CNT == 2u)
+  83:Generated_Source\PSoC4/CapSense_CSD_PM.c ****         CapSense_CSD_CSD_CFG_REG &= ~(CapSense_CSD_CSD_CFG_ENABLE);
+  83              		.loc 1 83 0
+  84 0016 1368     		ldr	r3, [r2]
+  85 0018 5B00     		lsls	r3, r3, #1
+  86 001a 5B08     		lsrs	r3, r3, #1
+  87 001c 1360     		str	r3, [r2]
+  84:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     #endif /* (CapSense_CSD_IDAC_CNT == 2u) */
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 4
+
+
+  85:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  86:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     /* Disable Clocks */
+  87:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     CapSense_CSD_SenseClk_Stop();
+  88              		.loc 1 87 0
+  89 001e FFF7FEFF 		bl	CapSense_CSD_SenseClk_Stop
+  90              	.LVL2:
+  88:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     CapSense_CSD_SampleClk_Stop();
+  91              		.loc 1 88 0
+  92 0022 FFF7FEFF 		bl	CapSense_CSD_SampleClk_Stop
+  93              	.LVL3:
+  89:Generated_Source\PSoC4/CapSense_CSD_PM.c **** }
+  94              		.loc 1 89 0
+  95              		@ sp needed
+  96 0026 10BD     		pop	{r4, pc}
+  97              	.L7:
+  98              		.align	2
+  99              	.L6:
+ 100 0028 04000840 		.word	1074266116
+ 101 002c FFEFF7FF 		.word	-528385
+ 102              		.cfi_endproc
+ 103              	.LFE33:
+ 104              		.size	CapSense_CSD_Sleep, .-CapSense_CSD_Sleep
+ 105              		.section	.text.CapSense_CSD_RestoreConfig,"ax",%progbits
+ 106              		.align	2
+ 107              		.global	CapSense_CSD_RestoreConfig
+ 108              		.code	16
+ 109              		.thumb_func
+ 110              		.type	CapSense_CSD_RestoreConfig, %function
+ 111              	CapSense_CSD_RestoreConfig:
+ 112              	.LFB34:
+  90:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  91:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+  92:Generated_Source\PSoC4/CapSense_CSD_PM.c **** /*******************************************************************************
+  93:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Function Name: CapSense_CSD_RestoreConfig
+  94:Generated_Source\PSoC4/CapSense_CSD_PM.c **** ********************************************************************************
+  95:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  96:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Summary:
+  97:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  Restores the CapSense configuration.
+  98:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+  99:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Parameters:
+ 100:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  None
+ 101:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+ 102:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Return:
+ 103:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  None
+ 104:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+ 105:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Side Effects:
+ 106:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  Must be called only after CapSense_CSD_SaveConfig() routine. Otherwise
+ 107:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  the component configuration will be overwritten with its initial setting.
+ 108:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+ 109:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Global Variables:
+ 110:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  CapSense_CSD_backup - used to save the component state before entering the sleep
+ 111:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  mode and none-retention registers.
+ 112:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+ 113:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *******************************************************************************/
+ 114:Generated_Source\PSoC4/CapSense_CSD_PM.c **** void CapSense_CSD_RestoreConfig(void)
+ 115:Generated_Source\PSoC4/CapSense_CSD_PM.c **** {
+ 113              		.loc 1 115 0
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 5
+
+
+ 114              		.cfi_startproc
+ 115              		@ args = 0, pretend = 0, frame = 0
+ 116              		@ frame_needed = 0, uses_anonymous_args = 0
+ 117              		@ link register save eliminated.
+ 116:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+ 117:Generated_Source\PSoC4/CapSense_CSD_PM.c **** }
+ 118              		.loc 1 117 0
+ 119              		@ sp needed
+ 120 0000 7047     		bx	lr
+ 121              		.cfi_endproc
+ 122              	.LFE34:
+ 123              		.size	CapSense_CSD_RestoreConfig, .-CapSense_CSD_RestoreConfig
+ 124 0002 C046     		.section	.text.CapSense_CSD_Wakeup,"ax",%progbits
+ 125              		.align	2
+ 126              		.global	CapSense_CSD_Wakeup
+ 127              		.code	16
+ 128              		.thumb_func
+ 129              		.type	CapSense_CSD_Wakeup, %function
+ 130              	CapSense_CSD_Wakeup:
+ 131              	.LFB35:
+ 118:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+ 119:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+ 120:Generated_Source\PSoC4/CapSense_CSD_PM.c **** /*******************************************************************************
+ 121:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Function Name: CapSense_CSD_Wakeup
+ 122:Generated_Source\PSoC4/CapSense_CSD_PM.c **** ********************************************************************************
+ 123:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+ 124:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Summary:
+ 125:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  Restores the CapSense configuration and non-retention register values.
+ 126:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  Restores the enabled state of the component by setting the Active mode power template
+ 127:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  bits for a number of components used within CapSense.
+ 128:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+ 129:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Parameters:
+ 130:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  None
+ 131:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+ 132:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Return:
+ 133:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  None
+ 134:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+ 135:Generated_Source\PSoC4/CapSense_CSD_PM.c **** * Global Variables:
+ 136:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  CapSense_CSD_backup - used to save the component state before entering the sleep
+ 137:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *  mode and none-retention registers.
+ 138:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *
+ 139:Generated_Source\PSoC4/CapSense_CSD_PM.c **** *******************************************************************************/
+ 140:Generated_Source\PSoC4/CapSense_CSD_PM.c **** void CapSense_CSD_Wakeup(void)
+ 141:Generated_Source\PSoC4/CapSense_CSD_PM.c **** {
+ 132              		.loc 1 141 0
+ 133              		.cfi_startproc
+ 134              		@ args = 0, pretend = 0, frame = 0
+ 135              		@ frame_needed = 0, uses_anonymous_args = 0
+ 136 0000 10B5     		push	{r4, lr}
+ 137              		.cfi_def_cfa_offset 8
+ 138              		.cfi_offset 4, -8
+ 139              		.cfi_offset 14, -4
+ 142:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     /* Enable the Clocks */
+ 143:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     CapSense_CSD_SenseClk_Start();
+ 140              		.loc 1 143 0
+ 141 0002 FFF7FEFF 		bl	CapSense_CSD_SenseClk_Start
+ 142              	.LVL4:
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 6
+
+
+ 144:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     CapSense_CSD_SampleClk_Start();
+ 143              		.loc 1 144 0
+ 144 0006 FFF7FEFF 		bl	CapSense_CSD_SampleClk_Start
+ 145              	.LVL5:
+ 145:Generated_Source\PSoC4/CapSense_CSD_PM.c **** 
+ 146:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     /* Restore CapSense Enable state */
+ 147:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     if (CapSense_CSD_backup.enableState != 0u)
+ 146              		.loc 1 147 0
+ 147 000a 034B     		ldr	r3, .L11
+ 148 000c 1B78     		ldrb	r3, [r3]
+ 149 000e 002B     		cmp	r3, #0
+ 150 0010 01D0     		beq	.L9
+ 148:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     {
+ 149:Generated_Source\PSoC4/CapSense_CSD_PM.c ****         CapSense_CSD_Enable();
+ 151              		.loc 1 149 0
+ 152 0012 FFF7FEFF 		bl	CapSense_CSD_Enable
+ 153              	.LVL6:
+ 154              	.L9:
+ 150:Generated_Source\PSoC4/CapSense_CSD_PM.c ****     }
+ 151:Generated_Source\PSoC4/CapSense_CSD_PM.c **** }
+ 155              		.loc 1 151 0
+ 156              		@ sp needed
+ 157 0016 10BD     		pop	{r4, pc}
+ 158              	.L12:
+ 159              		.align	2
+ 160              	.L11:
+ 161 0018 00000000 		.word	.LANCHOR0
+ 162              		.cfi_endproc
+ 163              	.LFE35:
+ 164              		.size	CapSense_CSD_Wakeup, .-CapSense_CSD_Wakeup
+ 165              		.bss
+ 166              		.align	2
+ 167              		.set	.LANCHOR0,. + 0
+ 168              		.type	CapSense_CSD_backup, %object
+ 169              		.size	CapSense_CSD_backup, 1
+ 170              	CapSense_CSD_backup:
+ 171 0000 00       		.space	1
+ 172              		.text
+ 173              	.Letext0:
+ 174              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 175              		.file 3 "Generated_Source\\PSoC4\\CapSense_CSD.h"
+ 176              		.file 4 "Generated_Source\\PSoC4\\CyLib.h"
+ 177              		.file 5 "Generated_Source\\PSoC4\\CapSense_CSD_SenseClk.h"
+ 178              		.file 6 "Generated_Source\\PSoC4\\CapSense_CSD_SampleClk.h"
+ 179              		.section	.debug_info,"",%progbits
+ 180              	.Ldebug_info0:
+ 181 0000 BE010000 		.4byte	0x1be
+ 182 0004 0400     		.2byte	0x4
+ 183 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 184 000a 04       		.byte	0x4
+ 185 000b 01       		.uleb128 0x1
+ 186 000c A1010000 		.4byte	.LASF28
+ 187 0010 0C       		.byte	0xc
+ 188 0011 DD000000 		.4byte	.LASF29
+ 189 0015 3E000000 		.4byte	.LASF30
+ 190 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 191 001d 00000000 		.4byte	0
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 7
+
+
+ 192 0021 00000000 		.4byte	.Ldebug_line0
+ 193 0025 02       		.uleb128 0x2
+ 194 0026 01       		.byte	0x1
+ 195 0027 06       		.byte	0x6
+ 196 0028 D1020000 		.4byte	.LASF0
+ 197 002c 02       		.uleb128 0x2
+ 198 002d 01       		.byte	0x1
+ 199 002e 08       		.byte	0x8
+ 200 002f 06010000 		.4byte	.LASF1
+ 201 0033 02       		.uleb128 0x2
+ 202 0034 02       		.byte	0x2
+ 203 0035 05       		.byte	0x5
+ 204 0036 84020000 		.4byte	.LASF2
+ 205 003a 02       		.uleb128 0x2
+ 206 003b 02       		.byte	0x2
+ 207 003c 07       		.byte	0x7
+ 208 003d 80000000 		.4byte	.LASF3
+ 209 0041 02       		.uleb128 0x2
+ 210 0042 04       		.byte	0x4
+ 211 0043 05       		.byte	0x5
+ 212 0044 AA020000 		.4byte	.LASF4
+ 213 0048 02       		.uleb128 0x2
+ 214 0049 04       		.byte	0x4
+ 215 004a 07       		.byte	0x7
+ 216 004b 28010000 		.4byte	.LASF5
+ 217 004f 02       		.uleb128 0x2
+ 218 0050 08       		.byte	0x8
+ 219 0051 05       		.byte	0x5
+ 220 0052 38020000 		.4byte	.LASF6
+ 221 0056 02       		.uleb128 0x2
+ 222 0057 08       		.byte	0x8
+ 223 0058 07       		.byte	0x7
+ 224 0059 8A010000 		.4byte	.LASF7
+ 225 005d 03       		.uleb128 0x3
+ 226 005e 04       		.byte	0x4
+ 227 005f 05       		.byte	0x5
+ 228 0060 696E7400 		.ascii	"int\000"
+ 229 0064 02       		.uleb128 0x2
+ 230 0065 04       		.byte	0x4
+ 231 0066 07       		.byte	0x7
+ 232 0067 6A010000 		.4byte	.LASF8
+ 233 006b 04       		.uleb128 0x4
+ 234 006c 3A010000 		.4byte	.LASF9
+ 235 0070 02       		.byte	0x2
+ 236 0071 D201     		.2byte	0x1d2
+ 237 0073 2C000000 		.4byte	0x2c
+ 238 0077 04       		.uleb128 0x4
+ 239 0078 63010000 		.4byte	.LASF10
+ 240 007c 02       		.byte	0x2
+ 241 007d D401     		.2byte	0x1d4
+ 242 007f 48000000 		.4byte	0x48
+ 243 0083 02       		.uleb128 0x2
+ 244 0084 04       		.byte	0x4
+ 245 0085 04       		.byte	0x4
+ 246 0086 CB020000 		.4byte	.LASF11
+ 247 008a 02       		.uleb128 0x2
+ 248 008b 08       		.byte	0x8
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 8
+
+
+ 249 008c 04       		.byte	0x4
+ 250 008d 5C010000 		.4byte	.LASF12
+ 251 0091 02       		.uleb128 0x2
+ 252 0092 01       		.byte	0x1
+ 253 0093 08       		.byte	0x8
+ 254 0094 46020000 		.4byte	.LASF13
+ 255 0098 04       		.uleb128 0x4
+ 256 0099 00000000 		.4byte	.LASF14
+ 257 009d 02       		.byte	0x2
+ 258 009e 7E02     		.2byte	0x27e
+ 259 00a0 A4000000 		.4byte	0xa4
+ 260 00a4 05       		.uleb128 0x5
+ 261 00a5 77000000 		.4byte	0x77
+ 262 00a9 02       		.uleb128 0x2
+ 263 00aa 04       		.byte	0x4
+ 264 00ab 07       		.byte	0x7
+ 265 00ac 2F020000 		.4byte	.LASF15
+ 266 00b0 02       		.uleb128 0x2
+ 267 00b1 08       		.byte	0x8
+ 268 00b2 04       		.byte	0x4
+ 269 00b3 BF020000 		.4byte	.LASF16
+ 270 00b7 06       		.uleb128 0x6
+ 271 00b8 01       		.byte	0x1
+ 272 00b9 03       		.byte	0x3
+ 273 00ba 8D       		.byte	0x8d
+ 274 00bb CC000000 		.4byte	0xcc
+ 275 00bf 07       		.uleb128 0x7
+ 276 00c0 B3020000 		.4byte	.LASF31
+ 277 00c4 03       		.byte	0x3
+ 278 00c5 8F       		.byte	0x8f
+ 279 00c6 6B000000 		.4byte	0x6b
+ 280 00ca 00       		.byte	0
+ 281 00cb 00       		.byte	0
+ 282 00cc 08       		.uleb128 0x8
+ 283 00cd 23000000 		.4byte	.LASF17
+ 284 00d1 03       		.byte	0x3
+ 285 00d2 90       		.byte	0x90
+ 286 00d3 B7000000 		.4byte	0xb7
+ 287 00d7 09       		.uleb128 0x9
+ 288 00d8 4B020000 		.4byte	.LASF18
+ 289 00dc 01       		.byte	0x1
+ 290 00dd 2E       		.byte	0x2e
+ 291 00de 00000000 		.4byte	.LFB32
+ 292 00e2 18000000 		.4byte	.LFE32-.LFB32
+ 293 00e6 01       		.uleb128 0x1
+ 294 00e7 9C       		.byte	0x9c
+ 295 00e8 0A       		.uleb128 0xa
+ 296 00e9 77010000 		.4byte	.LASF20
+ 297 00ed 01       		.byte	0x1
+ 298 00ee 49       		.byte	0x49
+ 299 00ef 00000000 		.4byte	.LFB33
+ 300 00f3 30000000 		.4byte	.LFE33-.LFB33
+ 301 00f7 01       		.uleb128 0x1
+ 302 00f8 9C       		.byte	0x9c
+ 303 00f9 2C010000 		.4byte	0x12c
+ 304 00fd 0B       		.uleb128 0xb
+ 305 00fe 06000000 		.4byte	.LVL0
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 9
+
+
+ 306 0102 D7000000 		.4byte	0xd7
+ 307 0106 0C       		.uleb128 0xc
+ 308 0107 0C000000 		.4byte	.LVL1
+ 309 010b 7F010000 		.4byte	0x17f
+ 310 010f 19010000 		.4byte	0x119
+ 311 0113 0D       		.uleb128 0xd
+ 312 0114 01       		.uleb128 0x1
+ 313 0115 50       		.byte	0x50
+ 314 0116 01       		.uleb128 0x1
+ 315 0117 3F       		.byte	0x3f
+ 316 0118 00       		.byte	0
+ 317 0119 0B       		.uleb128 0xb
+ 318 011a 22000000 		.4byte	.LVL2
+ 319 011e 8A010000 		.4byte	0x18a
+ 320 0122 0B       		.uleb128 0xb
+ 321 0123 26000000 		.4byte	.LVL3
+ 322 0127 95010000 		.4byte	0x195
+ 323 012b 00       		.byte	0
+ 324 012c 09       		.uleb128 0x9
+ 325 012d 93000000 		.4byte	.LASF19
+ 326 0131 01       		.byte	0x1
+ 327 0132 72       		.byte	0x72
+ 328 0133 00000000 		.4byte	.LFB34
+ 329 0137 02000000 		.4byte	.LFE34-.LFB34
+ 330 013b 01       		.uleb128 0x1
+ 331 013c 9C       		.byte	0x9c
+ 332 013d 0A       		.uleb128 0xa
+ 333 013e 63020000 		.4byte	.LASF21
+ 334 0142 01       		.byte	0x1
+ 335 0143 8C       		.byte	0x8c
+ 336 0144 00000000 		.4byte	.LFB35
+ 337 0148 1C000000 		.4byte	.LFE35-.LFB35
+ 338 014c 01       		.uleb128 0x1
+ 339 014d 9C       		.byte	0x9c
+ 340 014e 6E010000 		.4byte	0x16e
+ 341 0152 0B       		.uleb128 0xb
+ 342 0153 06000000 		.4byte	.LVL4
+ 343 0157 A0010000 		.4byte	0x1a0
+ 344 015b 0B       		.uleb128 0xb
+ 345 015c 0A000000 		.4byte	.LVL5
+ 346 0160 AB010000 		.4byte	0x1ab
+ 347 0164 0B       		.uleb128 0xb
+ 348 0165 16000000 		.4byte	.LVL6
+ 349 0169 B6010000 		.4byte	0x1b6
+ 350 016d 00       		.byte	0
+ 351 016e 0E       		.uleb128 0xe
+ 352 016f C9000000 		.4byte	.LASF32
+ 353 0173 01       		.byte	0x1
+ 354 0174 13       		.byte	0x13
+ 355 0175 CC000000 		.4byte	0xcc
+ 356 0179 05       		.uleb128 0x5
+ 357 017a 03       		.byte	0x3
+ 358 017b 00000000 		.4byte	CapSense_CSD_backup
+ 359 017f 0F       		.uleb128 0xf
+ 360 0180 77020000 		.4byte	.LASF22
+ 361 0184 77020000 		.4byte	.LASF22
+ 362 0188 04       		.byte	0x4
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 10
+
+
+ 363 0189 C5       		.byte	0xc5
+ 364 018a 0F       		.uleb128 0xf
+ 365 018b AE000000 		.4byte	.LASF23
+ 366 018f AE000000 		.4byte	.LASF23
+ 367 0193 05       		.byte	0x5
+ 368 0194 27       		.byte	0x27
+ 369 0195 0F       		.uleb128 0xf
+ 370 0196 8E020000 		.4byte	.LASF24
+ 371 019a 8E020000 		.4byte	.LASF24
+ 372 019e 06       		.byte	0x6
+ 373 019f 27       		.byte	0x27
+ 374 01a0 0F       		.uleb128 0xf
+ 375 01a1 40010000 		.4byte	.LASF25
+ 376 01a5 40010000 		.4byte	.LASF25
+ 377 01a9 05       		.byte	0x5
+ 378 01aa 23       		.byte	0x23
+ 379 01ab 0F       		.uleb128 0xf
+ 380 01ac 06000000 		.4byte	.LASF26
+ 381 01b0 06000000 		.4byte	.LASF26
+ 382 01b4 06       		.byte	0x6
+ 383 01b5 23       		.byte	0x23
+ 384 01b6 0F       		.uleb128 0xf
+ 385 01b7 14010000 		.4byte	.LASF27
+ 386 01bb 14010000 		.4byte	.LASF27
+ 387 01bf 03       		.byte	0x3
+ 388 01c0 98       		.byte	0x98
+ 389 01c1 00       		.byte	0
+ 390              		.section	.debug_abbrev,"",%progbits
+ 391              	.Ldebug_abbrev0:
+ 392 0000 01       		.uleb128 0x1
+ 393 0001 11       		.uleb128 0x11
+ 394 0002 01       		.byte	0x1
+ 395 0003 25       		.uleb128 0x25
+ 396 0004 0E       		.uleb128 0xe
+ 397 0005 13       		.uleb128 0x13
+ 398 0006 0B       		.uleb128 0xb
+ 399 0007 03       		.uleb128 0x3
+ 400 0008 0E       		.uleb128 0xe
+ 401 0009 1B       		.uleb128 0x1b
+ 402 000a 0E       		.uleb128 0xe
+ 403 000b 55       		.uleb128 0x55
+ 404 000c 17       		.uleb128 0x17
+ 405 000d 11       		.uleb128 0x11
+ 406 000e 01       		.uleb128 0x1
+ 407 000f 10       		.uleb128 0x10
+ 408 0010 17       		.uleb128 0x17
+ 409 0011 00       		.byte	0
+ 410 0012 00       		.byte	0
+ 411 0013 02       		.uleb128 0x2
+ 412 0014 24       		.uleb128 0x24
+ 413 0015 00       		.byte	0
+ 414 0016 0B       		.uleb128 0xb
+ 415 0017 0B       		.uleb128 0xb
+ 416 0018 3E       		.uleb128 0x3e
+ 417 0019 0B       		.uleb128 0xb
+ 418 001a 03       		.uleb128 0x3
+ 419 001b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 11
+
+
+ 420 001c 00       		.byte	0
+ 421 001d 00       		.byte	0
+ 422 001e 03       		.uleb128 0x3
+ 423 001f 24       		.uleb128 0x24
+ 424 0020 00       		.byte	0
+ 425 0021 0B       		.uleb128 0xb
+ 426 0022 0B       		.uleb128 0xb
+ 427 0023 3E       		.uleb128 0x3e
+ 428 0024 0B       		.uleb128 0xb
+ 429 0025 03       		.uleb128 0x3
+ 430 0026 08       		.uleb128 0x8
+ 431 0027 00       		.byte	0
+ 432 0028 00       		.byte	0
+ 433 0029 04       		.uleb128 0x4
+ 434 002a 16       		.uleb128 0x16
+ 435 002b 00       		.byte	0
+ 436 002c 03       		.uleb128 0x3
+ 437 002d 0E       		.uleb128 0xe
+ 438 002e 3A       		.uleb128 0x3a
+ 439 002f 0B       		.uleb128 0xb
+ 440 0030 3B       		.uleb128 0x3b
+ 441 0031 05       		.uleb128 0x5
+ 442 0032 49       		.uleb128 0x49
+ 443 0033 13       		.uleb128 0x13
+ 444 0034 00       		.byte	0
+ 445 0035 00       		.byte	0
+ 446 0036 05       		.uleb128 0x5
+ 447 0037 35       		.uleb128 0x35
+ 448 0038 00       		.byte	0
+ 449 0039 49       		.uleb128 0x49
+ 450 003a 13       		.uleb128 0x13
+ 451 003b 00       		.byte	0
+ 452 003c 00       		.byte	0
+ 453 003d 06       		.uleb128 0x6
+ 454 003e 13       		.uleb128 0x13
+ 455 003f 01       		.byte	0x1
+ 456 0040 0B       		.uleb128 0xb
+ 457 0041 0B       		.uleb128 0xb
+ 458 0042 3A       		.uleb128 0x3a
+ 459 0043 0B       		.uleb128 0xb
+ 460 0044 3B       		.uleb128 0x3b
+ 461 0045 0B       		.uleb128 0xb
+ 462 0046 01       		.uleb128 0x1
+ 463 0047 13       		.uleb128 0x13
+ 464 0048 00       		.byte	0
+ 465 0049 00       		.byte	0
+ 466 004a 07       		.uleb128 0x7
+ 467 004b 0D       		.uleb128 0xd
+ 468 004c 00       		.byte	0
+ 469 004d 03       		.uleb128 0x3
+ 470 004e 0E       		.uleb128 0xe
+ 471 004f 3A       		.uleb128 0x3a
+ 472 0050 0B       		.uleb128 0xb
+ 473 0051 3B       		.uleb128 0x3b
+ 474 0052 0B       		.uleb128 0xb
+ 475 0053 49       		.uleb128 0x49
+ 476 0054 13       		.uleb128 0x13
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 12
+
+
+ 477 0055 38       		.uleb128 0x38
+ 478 0056 0B       		.uleb128 0xb
+ 479 0057 00       		.byte	0
+ 480 0058 00       		.byte	0
+ 481 0059 08       		.uleb128 0x8
+ 482 005a 16       		.uleb128 0x16
+ 483 005b 00       		.byte	0
+ 484 005c 03       		.uleb128 0x3
+ 485 005d 0E       		.uleb128 0xe
+ 486 005e 3A       		.uleb128 0x3a
+ 487 005f 0B       		.uleb128 0xb
+ 488 0060 3B       		.uleb128 0x3b
+ 489 0061 0B       		.uleb128 0xb
+ 490 0062 49       		.uleb128 0x49
+ 491 0063 13       		.uleb128 0x13
+ 492 0064 00       		.byte	0
+ 493 0065 00       		.byte	0
+ 494 0066 09       		.uleb128 0x9
+ 495 0067 2E       		.uleb128 0x2e
+ 496 0068 00       		.byte	0
+ 497 0069 3F       		.uleb128 0x3f
+ 498 006a 19       		.uleb128 0x19
+ 499 006b 03       		.uleb128 0x3
+ 500 006c 0E       		.uleb128 0xe
+ 501 006d 3A       		.uleb128 0x3a
+ 502 006e 0B       		.uleb128 0xb
+ 503 006f 3B       		.uleb128 0x3b
+ 504 0070 0B       		.uleb128 0xb
+ 505 0071 27       		.uleb128 0x27
+ 506 0072 19       		.uleb128 0x19
+ 507 0073 11       		.uleb128 0x11
+ 508 0074 01       		.uleb128 0x1
+ 509 0075 12       		.uleb128 0x12
+ 510 0076 06       		.uleb128 0x6
+ 511 0077 40       		.uleb128 0x40
+ 512 0078 18       		.uleb128 0x18
+ 513 0079 9742     		.uleb128 0x2117
+ 514 007b 19       		.uleb128 0x19
+ 515 007c 00       		.byte	0
+ 516 007d 00       		.byte	0
+ 517 007e 0A       		.uleb128 0xa
+ 518 007f 2E       		.uleb128 0x2e
+ 519 0080 01       		.byte	0x1
+ 520 0081 3F       		.uleb128 0x3f
+ 521 0082 19       		.uleb128 0x19
+ 522 0083 03       		.uleb128 0x3
+ 523 0084 0E       		.uleb128 0xe
+ 524 0085 3A       		.uleb128 0x3a
+ 525 0086 0B       		.uleb128 0xb
+ 526 0087 3B       		.uleb128 0x3b
+ 527 0088 0B       		.uleb128 0xb
+ 528 0089 27       		.uleb128 0x27
+ 529 008a 19       		.uleb128 0x19
+ 530 008b 11       		.uleb128 0x11
+ 531 008c 01       		.uleb128 0x1
+ 532 008d 12       		.uleb128 0x12
+ 533 008e 06       		.uleb128 0x6
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 13
+
+
+ 534 008f 40       		.uleb128 0x40
+ 535 0090 18       		.uleb128 0x18
+ 536 0091 9742     		.uleb128 0x2117
+ 537 0093 19       		.uleb128 0x19
+ 538 0094 01       		.uleb128 0x1
+ 539 0095 13       		.uleb128 0x13
+ 540 0096 00       		.byte	0
+ 541 0097 00       		.byte	0
+ 542 0098 0B       		.uleb128 0xb
+ 543 0099 898201   		.uleb128 0x4109
+ 544 009c 00       		.byte	0
+ 545 009d 11       		.uleb128 0x11
+ 546 009e 01       		.uleb128 0x1
+ 547 009f 31       		.uleb128 0x31
+ 548 00a0 13       		.uleb128 0x13
+ 549 00a1 00       		.byte	0
+ 550 00a2 00       		.byte	0
+ 551 00a3 0C       		.uleb128 0xc
+ 552 00a4 898201   		.uleb128 0x4109
+ 553 00a7 01       		.byte	0x1
+ 554 00a8 11       		.uleb128 0x11
+ 555 00a9 01       		.uleb128 0x1
+ 556 00aa 31       		.uleb128 0x31
+ 557 00ab 13       		.uleb128 0x13
+ 558 00ac 01       		.uleb128 0x1
+ 559 00ad 13       		.uleb128 0x13
+ 560 00ae 00       		.byte	0
+ 561 00af 00       		.byte	0
+ 562 00b0 0D       		.uleb128 0xd
+ 563 00b1 8A8201   		.uleb128 0x410a
+ 564 00b4 00       		.byte	0
+ 565 00b5 02       		.uleb128 0x2
+ 566 00b6 18       		.uleb128 0x18
+ 567 00b7 9142     		.uleb128 0x2111
+ 568 00b9 18       		.uleb128 0x18
+ 569 00ba 00       		.byte	0
+ 570 00bb 00       		.byte	0
+ 571 00bc 0E       		.uleb128 0xe
+ 572 00bd 34       		.uleb128 0x34
+ 573 00be 00       		.byte	0
+ 574 00bf 03       		.uleb128 0x3
+ 575 00c0 0E       		.uleb128 0xe
+ 576 00c1 3A       		.uleb128 0x3a
+ 577 00c2 0B       		.uleb128 0xb
+ 578 00c3 3B       		.uleb128 0x3b
+ 579 00c4 0B       		.uleb128 0xb
+ 580 00c5 49       		.uleb128 0x49
+ 581 00c6 13       		.uleb128 0x13
+ 582 00c7 02       		.uleb128 0x2
+ 583 00c8 18       		.uleb128 0x18
+ 584 00c9 00       		.byte	0
+ 585 00ca 00       		.byte	0
+ 586 00cb 0F       		.uleb128 0xf
+ 587 00cc 2E       		.uleb128 0x2e
+ 588 00cd 00       		.byte	0
+ 589 00ce 3F       		.uleb128 0x3f
+ 590 00cf 19       		.uleb128 0x19
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 14
+
+
+ 591 00d0 3C       		.uleb128 0x3c
+ 592 00d1 19       		.uleb128 0x19
+ 593 00d2 6E       		.uleb128 0x6e
+ 594 00d3 0E       		.uleb128 0xe
+ 595 00d4 03       		.uleb128 0x3
+ 596 00d5 0E       		.uleb128 0xe
+ 597 00d6 3A       		.uleb128 0x3a
+ 598 00d7 0B       		.uleb128 0xb
+ 599 00d8 3B       		.uleb128 0x3b
+ 600 00d9 0B       		.uleb128 0xb
+ 601 00da 00       		.byte	0
+ 602 00db 00       		.byte	0
+ 603 00dc 00       		.byte	0
+ 604              		.section	.debug_aranges,"",%progbits
+ 605 0000 34000000 		.4byte	0x34
+ 606 0004 0200     		.2byte	0x2
+ 607 0006 00000000 		.4byte	.Ldebug_info0
+ 608 000a 04       		.byte	0x4
+ 609 000b 00       		.byte	0
+ 610 000c 0000     		.2byte	0
+ 611 000e 0000     		.2byte	0
+ 612 0010 00000000 		.4byte	.LFB32
+ 613 0014 18000000 		.4byte	.LFE32-.LFB32
+ 614 0018 00000000 		.4byte	.LFB33
+ 615 001c 30000000 		.4byte	.LFE33-.LFB33
+ 616 0020 00000000 		.4byte	.LFB34
+ 617 0024 02000000 		.4byte	.LFE34-.LFB34
+ 618 0028 00000000 		.4byte	.LFB35
+ 619 002c 1C000000 		.4byte	.LFE35-.LFB35
+ 620 0030 00000000 		.4byte	0
+ 621 0034 00000000 		.4byte	0
+ 622              		.section	.debug_ranges,"",%progbits
+ 623              	.Ldebug_ranges0:
+ 624 0000 00000000 		.4byte	.LFB32
+ 625 0004 18000000 		.4byte	.LFE32
+ 626 0008 00000000 		.4byte	.LFB33
+ 627 000c 30000000 		.4byte	.LFE33
+ 628 0010 00000000 		.4byte	.LFB34
+ 629 0014 02000000 		.4byte	.LFE34
+ 630 0018 00000000 		.4byte	.LFB35
+ 631 001c 1C000000 		.4byte	.LFE35
+ 632 0020 00000000 		.4byte	0
+ 633 0024 00000000 		.4byte	0
+ 634              		.section	.debug_line,"",%progbits
+ 635              	.Ldebug_line0:
+ 636 0000 F5000000 		.section	.debug_str,"MS",%progbits,1
+ 636      0200A000 
+ 636      00000201 
+ 636      FB0E0D00 
+ 636      01010101 
+ 637              	.LASF14:
+ 638 0000 72656733 		.ascii	"reg32\000"
+ 638      3200
+ 639              	.LASF26:
+ 640 0006 43617053 		.ascii	"CapSense_CSD_SampleClk_Start\000"
+ 640      656E7365 
+ 640      5F435344 
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 15
+
+
+ 640      5F53616D 
+ 640      706C6543 
+ 641              	.LASF17:
+ 642 0023 43617053 		.ascii	"CapSense_CSD_BACKUP_STRUCT\000"
+ 642      656E7365 
+ 642      5F435344 
+ 642      5F424143 
+ 642      4B55505F 
+ 643              	.LASF30:
+ 644 003e 443A5C5A 		.ascii	"D:\\Zuru Shaunak\\Documents\\PSoC Creator\\Workspac"
+ 644      75727520 
+ 644      53686175 
+ 644      6E616B5C 
+ 644      446F6375 
+ 645 006d 6530325C 		.ascii	"e02\\Design01.cydsn\000"
+ 645      44657369 
+ 645      676E3031 
+ 645      2E637964 
+ 645      736E00
+ 646              	.LASF3:
+ 647 0080 73686F72 		.ascii	"short unsigned int\000"
+ 647      7420756E 
+ 647      7369676E 
+ 647      65642069 
+ 647      6E7400
+ 648              	.LASF19:
+ 649 0093 43617053 		.ascii	"CapSense_CSD_RestoreConfig\000"
+ 649      656E7365 
+ 649      5F435344 
+ 649      5F526573 
+ 649      746F7265 
+ 650              	.LASF23:
+ 651 00ae 43617053 		.ascii	"CapSense_CSD_SenseClk_Stop\000"
+ 651      656E7365 
+ 651      5F435344 
+ 651      5F53656E 
+ 651      7365436C 
+ 652              	.LASF32:
+ 653 00c9 43617053 		.ascii	"CapSense_CSD_backup\000"
+ 653      656E7365 
+ 653      5F435344 
+ 653      5F626163 
+ 653      6B757000 
+ 654              	.LASF29:
+ 655 00dd 47656E65 		.ascii	"Generated_Source\\PSoC4\\CapSense_CSD_PM.c\000"
+ 655      72617465 
+ 655      645F536F 
+ 655      75726365 
+ 655      5C50536F 
+ 656              	.LASF1:
+ 657 0106 756E7369 		.ascii	"unsigned char\000"
+ 657      676E6564 
+ 657      20636861 
+ 657      7200
+ 658              	.LASF27:
+ 659 0114 43617053 		.ascii	"CapSense_CSD_Enable\000"
+ 659      656E7365 
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 16
+
+
+ 659      5F435344 
+ 659      5F456E61 
+ 659      626C6500 
+ 660              	.LASF5:
+ 661 0128 6C6F6E67 		.ascii	"long unsigned int\000"
+ 661      20756E73 
+ 661      69676E65 
+ 661      6420696E 
+ 661      7400
+ 662              	.LASF9:
+ 663 013a 75696E74 		.ascii	"uint8\000"
+ 663      3800
+ 664              	.LASF25:
+ 665 0140 43617053 		.ascii	"CapSense_CSD_SenseClk_Start\000"
+ 665      656E7365 
+ 665      5F435344 
+ 665      5F53656E 
+ 665      7365436C 
+ 666              	.LASF12:
+ 667 015c 646F7562 		.ascii	"double\000"
+ 667      6C6500
+ 668              	.LASF10:
+ 669 0163 75696E74 		.ascii	"uint32\000"
+ 669      333200
+ 670              	.LASF8:
+ 671 016a 756E7369 		.ascii	"unsigned int\000"
+ 671      676E6564 
+ 671      20696E74 
+ 671      00
+ 672              	.LASF20:
+ 673 0177 43617053 		.ascii	"CapSense_CSD_Sleep\000"
+ 673      656E7365 
+ 673      5F435344 
+ 673      5F536C65 
+ 673      657000
+ 674              	.LASF7:
+ 675 018a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 675      206C6F6E 
+ 675      6720756E 
+ 675      7369676E 
+ 675      65642069 
+ 676              	.LASF28:
+ 677 01a1 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 677      43313120 
+ 677      352E342E 
+ 677      31203230 
+ 677      31363036 
+ 678 01d4 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 678      20726576 
+ 678      6973696F 
+ 678      6E203233 
+ 678      37373135 
+ 679 0207 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 679      66756E63 
+ 679      74696F6E 
+ 679      2D736563 
+ 679      74696F6E 
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 17
+
+
+ 680              	.LASF15:
+ 681 022f 73697A65 		.ascii	"sizetype\000"
+ 681      74797065 
+ 681      00
+ 682              	.LASF6:
+ 683 0238 6C6F6E67 		.ascii	"long long int\000"
+ 683      206C6F6E 
+ 683      6720696E 
+ 683      7400
+ 684              	.LASF13:
+ 685 0246 63686172 		.ascii	"char\000"
+ 685      00
+ 686              	.LASF18:
+ 687 024b 43617053 		.ascii	"CapSense_CSD_SaveConfig\000"
+ 687      656E7365 
+ 687      5F435344 
+ 687      5F536176 
+ 687      65436F6E 
+ 688              	.LASF21:
+ 689 0263 43617053 		.ascii	"CapSense_CSD_Wakeup\000"
+ 689      656E7365 
+ 689      5F435344 
+ 689      5F57616B 
+ 689      65757000 
+ 690              	.LASF22:
+ 691 0277 4379496E 		.ascii	"CyIntDisable\000"
+ 691      74446973 
+ 691      61626C65 
+ 691      00
+ 692              	.LASF2:
+ 693 0284 73686F72 		.ascii	"short int\000"
+ 693      7420696E 
+ 693      7400
+ 694              	.LASF24:
+ 695 028e 43617053 		.ascii	"CapSense_CSD_SampleClk_Stop\000"
+ 695      656E7365 
+ 695      5F435344 
+ 695      5F53616D 
+ 695      706C6543 
+ 696              	.LASF4:
+ 697 02aa 6C6F6E67 		.ascii	"long int\000"
+ 697      20696E74 
+ 697      00
+ 698              	.LASF31:
+ 699 02b3 656E6162 		.ascii	"enableState\000"
+ 699      6C655374 
+ 699      61746500 
+ 700              	.LASF16:
+ 701 02bf 6C6F6E67 		.ascii	"long double\000"
+ 701      20646F75 
+ 701      626C6500 
+ 702              	.LASF11:
+ 703 02cb 666C6F61 		.ascii	"float\000"
+ 703      7400
+ 704              	.LASF0:
+ 705 02d1 7369676E 		.ascii	"signed char\000"
+ 705      65642063 
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\ccSOSZja.s 			page 18
+
+
+ 705      68617200 
+ 706              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

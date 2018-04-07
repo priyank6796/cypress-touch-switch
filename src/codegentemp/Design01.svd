@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device schemaVersion="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD_Schema_1_0.xsd">
+  <name>CY8C4245AXI_483</name>
+  <version>0.1</version>
+  <description>PSoC 4200</description>
+  <addressUnitBits>8</addressUnitBits>
+  <width>32</width>
+  <peripherals>
+    <peripheral>
+      <name>CapSense_CSD_IDAC1</name>
+      <description>IDAC</description>
+      <baseAddress>0x0</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>CSD_IDAC_POLARITY</name>
+          <description> CSD IDAC Polarity</description>
+          <addressOffset>0x40080004</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>CSD_IDAC</name>
+          <description> CSD IDAC register</description>
+          <addressOffset>0x40080008</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>CSD_TRIM1</name>
+          <description> CSD IDAC TRIM1</description>
+          <addressOffset>0x4008FF00</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>CSD_TRIM2</name>
+          <description> CSD IDAC TRIM2</description>
+          <addressOffset>0x4008FF04</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+      </registers>
+    </peripheral>
+    <peripheral>
+      <name>CapSense_CSD_IDAC2</name>
+      <description>IDAC</description>
+      <baseAddress>0x0</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x0</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>CSD_IDAC_POLARITY</name>
+          <description> CSD IDAC Polarity</description>
+          <addressOffset>0x40080004</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>CSD_IDAC</name>
+          <description> CSD IDAC register</description>
+          <addressOffset>0x40080008</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>CSD_TRIM1</name>
+          <description> CSD IDAC TRIM1</description>
+          <addressOffset>0x4008FF00</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>CSD_TRIM2</name>
+          <description> CSD IDAC TRIM2</description>
+          <addressOffset>0x4008FF04</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+      </registers>
+    </peripheral>
+  </peripherals>
+</device>

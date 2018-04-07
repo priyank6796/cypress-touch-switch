@@ -1,0 +1,1397 @@
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.level0,"ax",%progbits
+  20              		.align	2
+  21              		.global	level0
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	level0, %function
+  25              	level0:
+  26              	.LFB33:
+  27              		.file 1 "main.c"
+   1:main.c        **** 
+   2:main.c        **** #include "project.h"
+   3:main.c        **** 
+   4:main.c        **** int flag=0;
+   5:main.c        **** 
+   6:main.c        **** void level_up_2();
+   7:main.c        **** void level_up_1();
+   8:main.c        **** void level_down_2();
+   9:main.c        **** void level_down_1();
+  10:main.c        **** void level0();
+  11:main.c        **** 
+  12:main.c        **** int main(void)
+  13:main.c        **** {
+  14:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  15:main.c        ****     
+  16:main.c        ****     CapSense_CSD_Start();	
+  17:main.c        ****     CapSense_CSD_InitializeAllBaselines();
+  18:main.c        ****     
+  19:main.c        ****     for(;;)
+  20:main.c        ****     {
+  21:main.c        ****      CapSense_CSD_UpdateEnabledBaselines();
+  22:main.c        ****         CapSense_CSD_ScanEnabledWidgets();
+  23:main.c        ****         while(CapSense_CSD_IsBusy() != 0)
+  24:main.c        **** 		{
+  25:main.c        **** 		}
+  26:main.c        ****        
+  27:main.c        ****     uint32 state1= CapSense_CSD_CheckIsWidgetActive(CapSense_CSD_SENSOR_BUTTON0__BTN);
+  28:main.c        ****     uint32 state2= CapSense_CSD_CheckIsWidgetActive(CapSense_CSD_SENSOR_BUTTON1__BTN);
+  29:main.c        ****     uint32 state3= CapSense_CSD_CheckIsWidgetActive(CapSense_CSD_SENSOR_BUTTON2__BTN);
+  30:main.c        ****     uint32 state4= CapSense_CSD_CheckIsWidgetActive(CapSense_CSD_SENSOR_BUTTON3__BTN);
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 2
+
+
+  31:main.c        ****     uint32 state5= CapSense_CSD_CheckIsWidgetActive(CapSense_CSD_SENSOR_BUTTON4__BTN);
+  32:main.c        ****        
+  33:main.c        ****     if(state1==1u){  level_up_2(); }
+  34:main.c        ****     if(state2==1u){  level_up_1(); }
+  35:main.c        ****     if(state3==1u){  level0(); }
+  36:main.c        ****     if(state4==1u){  level_down_1(); }
+  37:main.c        ****     if(state5==1u){  level_down_2(); }
+  38:main.c        ****         
+  39:main.c        ****     }
+  40:main.c        **** 
+  41:main.c        **** }
+  42:main.c        **** 
+  43:main.c        **** void level0(){ 
+  28              		.loc 1 43 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  44:main.c        ****     LED_1_Write(0u);
+  36              		.loc 1 44 0
+  37 0002 0020     		movs	r0, #0
+  38 0004 FFF7FEFF 		bl	LED_1_Write
+  39              	.LVL0:
+  45:main.c        ****     LED_2_Write(0u);
+  40              		.loc 1 45 0
+  41 0008 0020     		movs	r0, #0
+  42 000a FFF7FEFF 		bl	LED_2_Write
+  43              	.LVL1:
+  46:main.c        ****     LED_3_Write(0u);
+  44              		.loc 1 46 0
+  45 000e 0020     		movs	r0, #0
+  46 0010 FFF7FEFF 		bl	LED_3_Write
+  47              	.LVL2:
+  47:main.c        ****     LED_4_Write(0u);
+  48              		.loc 1 47 0
+  49 0014 0020     		movs	r0, #0
+  50 0016 FFF7FEFF 		bl	LED_4_Write
+  51              	.LVL3:
+  48:main.c        **** }
+  52              		.loc 1 48 0
+  53              		@ sp needed
+  54 001a 10BD     		pop	{r4, pc}
+  55              		.cfi_endproc
+  56              	.LFE33:
+  57              		.size	level0, .-level0
+  58              		.section	.text.level_up_1,"ax",%progbits
+  59              		.align	2
+  60              		.global	level_up_1
+  61              		.code	16
+  62              		.thumb_func
+  63              		.type	level_up_1, %function
+  64              	level_up_1:
+  65              	.LFB34:
+  49:main.c        **** 
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 3
+
+
+  50:main.c        **** void level_up_1(){
+  66              		.loc 1 50 0
+  67              		.cfi_startproc
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70 0000 10B5     		push	{r4, lr}
+  71              		.cfi_def_cfa_offset 8
+  72              		.cfi_offset 4, -8
+  73              		.cfi_offset 14, -4
+  51:main.c        ****  LED_3_Write(1u);
+  74              		.loc 1 51 0
+  75 0002 0120     		movs	r0, #1
+  76 0004 FFF7FEFF 		bl	LED_3_Write
+  77              	.LVL4:
+  52:main.c        ****  LED_4_Write(0u);
+  78              		.loc 1 52 0
+  79 0008 0020     		movs	r0, #0
+  80 000a FFF7FEFF 		bl	LED_4_Write
+  81              	.LVL5:
+  53:main.c        **** }
+  82              		.loc 1 53 0
+  83              		@ sp needed
+  84 000e 10BD     		pop	{r4, pc}
+  85              		.cfi_endproc
+  86              	.LFE34:
+  87              		.size	level_up_1, .-level_up_1
+  88              		.section	.text.level_up_2,"ax",%progbits
+  89              		.align	2
+  90              		.global	level_up_2
+  91              		.code	16
+  92              		.thumb_func
+  93              		.type	level_up_2, %function
+  94              	level_up_2:
+  95              	.LFB35:
+  54:main.c        **** void level_up_2(){
+  96              		.loc 1 54 0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100 0000 10B5     		push	{r4, lr}
+ 101              		.cfi_def_cfa_offset 8
+ 102              		.cfi_offset 4, -8
+ 103              		.cfi_offset 14, -4
+  55:main.c        ****  LED_3_Write(1u);
+ 104              		.loc 1 55 0
+ 105 0002 0120     		movs	r0, #1
+ 106 0004 FFF7FEFF 		bl	LED_3_Write
+ 107              	.LVL6:
+  56:main.c        ****  LED_4_Write(1u);
+ 108              		.loc 1 56 0
+ 109 0008 0120     		movs	r0, #1
+ 110 000a FFF7FEFF 		bl	LED_4_Write
+ 111              	.LVL7:
+  57:main.c        **** }
+ 112              		.loc 1 57 0
+ 113              		@ sp needed
+ 114 000e 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 4
+
+
+ 115              		.cfi_endproc
+ 116              	.LFE35:
+ 117              		.size	level_up_2, .-level_up_2
+ 118              		.section	.text.level_down_1,"ax",%progbits
+ 119              		.align	2
+ 120              		.global	level_down_1
+ 121              		.code	16
+ 122              		.thumb_func
+ 123              		.type	level_down_1, %function
+ 124              	level_down_1:
+ 125              	.LFB36:
+  58:main.c        **** 
+  59:main.c        **** void level_down_1(){
+ 126              		.loc 1 59 0
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130 0000 10B5     		push	{r4, lr}
+ 131              		.cfi_def_cfa_offset 8
+ 132              		.cfi_offset 4, -8
+ 133              		.cfi_offset 14, -4
+  60:main.c        ****     LED_2_Write(1u);
+ 134              		.loc 1 60 0
+ 135 0002 0120     		movs	r0, #1
+ 136 0004 FFF7FEFF 		bl	LED_2_Write
+ 137              	.LVL8:
+  61:main.c        ****     LED_1_Write(0u);
+ 138              		.loc 1 61 0
+ 139 0008 0020     		movs	r0, #0
+ 140 000a FFF7FEFF 		bl	LED_1_Write
+ 141              	.LVL9:
+  62:main.c        **** }
+ 142              		.loc 1 62 0
+ 143              		@ sp needed
+ 144 000e 10BD     		pop	{r4, pc}
+ 145              		.cfi_endproc
+ 146              	.LFE36:
+ 147              		.size	level_down_1, .-level_down_1
+ 148              		.section	.text.level_down_2,"ax",%progbits
+ 149              		.align	2
+ 150              		.global	level_down_2
+ 151              		.code	16
+ 152              		.thumb_func
+ 153              		.type	level_down_2, %function
+ 154              	level_down_2:
+ 155              	.LFB37:
+  63:main.c        **** void level_down_2(){
+ 156              		.loc 1 63 0
+ 157              		.cfi_startproc
+ 158              		@ args = 0, pretend = 0, frame = 0
+ 159              		@ frame_needed = 0, uses_anonymous_args = 0
+ 160 0000 10B5     		push	{r4, lr}
+ 161              		.cfi_def_cfa_offset 8
+ 162              		.cfi_offset 4, -8
+ 163              		.cfi_offset 14, -4
+  64:main.c        ****     LED_2_Write(1u);
+ 164              		.loc 1 64 0
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 5
+
+
+ 165 0002 0120     		movs	r0, #1
+ 166 0004 FFF7FEFF 		bl	LED_2_Write
+ 167              	.LVL10:
+  65:main.c        ****     LED_1_Write(1u);    
+ 168              		.loc 1 65 0
+ 169 0008 0120     		movs	r0, #1
+ 170 000a FFF7FEFF 		bl	LED_1_Write
+ 171              	.LVL11:
+  66:main.c        **** }
+ 172              		.loc 1 66 0
+ 173              		@ sp needed
+ 174 000e 10BD     		pop	{r4, pc}
+ 175              		.cfi_endproc
+ 176              	.LFE37:
+ 177              		.size	level_down_2, .-level_down_2
+ 178              		.section	.text.main,"ax",%progbits
+ 179              		.align	2
+ 180              		.global	main
+ 181              		.code	16
+ 182              		.thumb_func
+ 183              		.type	main, %function
+ 184              	main:
+ 185              	.LFB32:
+  13:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 186              		.loc 1 13 0
+ 187              		.cfi_startproc
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 190 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 191              		.cfi_def_cfa_offset 20
+ 192              		.cfi_offset 4, -20
+ 193              		.cfi_offset 5, -16
+ 194              		.cfi_offset 6, -12
+ 195              		.cfi_offset 7, -8
+ 196              		.cfi_offset 14, -4
+ 197 0002 4746     		mov	r7, r8
+ 198 0004 80B4     		push	{r7}
+ 199              		.cfi_def_cfa_offset 24
+ 200              		.cfi_offset 8, -24
+  14:main.c        ****     
+ 201              		.loc 1 14 0
+ 202              		.syntax divided
+ 203              	@ 14 "main.c" 1
+ 204 0006 62B6     		CPSIE   i
+ 205              	@ 0 "" 2
+  16:main.c        ****     CapSense_CSD_InitializeAllBaselines();
+ 206              		.loc 1 16 0
+ 207              		.thumb
+ 208              		.syntax unified
+ 209 0008 FFF7FEFF 		bl	CapSense_CSD_Start
+ 210              	.LVL12:
+  17:main.c        ****     
+ 211              		.loc 1 17 0
+ 212 000c FFF7FEFF 		bl	CapSense_CSD_InitializeAllBaselines
+ 213              	.LVL13:
+ 214              	.L12:
+ 215              	.LBB2:
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 6
+
+
+  21:main.c        ****         CapSense_CSD_ScanEnabledWidgets();
+ 216              		.loc 1 21 0
+ 217 0010 FFF7FEFF 		bl	CapSense_CSD_UpdateEnabledBaselines
+ 218              	.LVL14:
+  22:main.c        ****         while(CapSense_CSD_IsBusy() != 0)
+ 219              		.loc 1 22 0
+ 220 0014 FFF7FEFF 		bl	CapSense_CSD_ScanEnabledWidgets
+ 221              	.LVL15:
+ 222              	.L7:
+  23:main.c        **** 		{
+ 223              		.loc 1 23 0 discriminator 1
+ 224 0018 FFF7FEFF 		bl	CapSense_CSD_IsBusy
+ 225              	.LVL16:
+ 226 001c 0028     		cmp	r0, #0
+ 227 001e FBD1     		bne	.L7
+  27:main.c        ****     uint32 state2= CapSense_CSD_CheckIsWidgetActive(CapSense_CSD_SENSOR_BUTTON1__BTN);
+ 228              		.loc 1 27 0
+ 229 0020 FFF7FEFF 		bl	CapSense_CSD_CheckIsWidgetActive
+ 230              	.LVL17:
+ 231 0024 8046     		mov	r8, r0
+ 232              	.LVL18:
+  28:main.c        ****     uint32 state3= CapSense_CSD_CheckIsWidgetActive(CapSense_CSD_SENSOR_BUTTON2__BTN);
+ 233              		.loc 1 28 0
+ 234 0026 0120     		movs	r0, #1
+ 235              	.LVL19:
+ 236 0028 FFF7FEFF 		bl	CapSense_CSD_CheckIsWidgetActive
+ 237              	.LVL20:
+ 238 002c 0700     		movs	r7, r0
+ 239              	.LVL21:
+  29:main.c        ****     uint32 state4= CapSense_CSD_CheckIsWidgetActive(CapSense_CSD_SENSOR_BUTTON3__BTN);
+ 240              		.loc 1 29 0
+ 241 002e 0220     		movs	r0, #2
+ 242              	.LVL22:
+ 243 0030 FFF7FEFF 		bl	CapSense_CSD_CheckIsWidgetActive
+ 244              	.LVL23:
+ 245 0034 0600     		movs	r6, r0
+ 246              	.LVL24:
+  30:main.c        ****     uint32 state5= CapSense_CSD_CheckIsWidgetActive(CapSense_CSD_SENSOR_BUTTON4__BTN);
+ 247              		.loc 1 30 0
+ 248 0036 0320     		movs	r0, #3
+ 249              	.LVL25:
+ 250 0038 FFF7FEFF 		bl	CapSense_CSD_CheckIsWidgetActive
+ 251              	.LVL26:
+ 252 003c 0500     		movs	r5, r0
+ 253              	.LVL27:
+  31:main.c        ****        
+ 254              		.loc 1 31 0
+ 255 003e 0420     		movs	r0, #4
+ 256              	.LVL28:
+ 257 0040 FFF7FEFF 		bl	CapSense_CSD_CheckIsWidgetActive
+ 258              	.LVL29:
+ 259 0044 0400     		movs	r4, r0
+ 260              	.LVL30:
+  33:main.c        ****     if(state2==1u){  level_up_1(); }
+ 261              		.loc 1 33 0
+ 262 0046 4346     		mov	r3, r8
+ 263 0048 012B     		cmp	r3, #1
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 7
+
+
+ 264 004a 01D1     		bne	.L8
+  33:main.c        ****     if(state2==1u){  level_up_1(); }
+ 265              		.loc 1 33 0 is_stmt 0 discriminator 1
+ 266 004c FFF7FEFF 		bl	level_up_2
+ 267              	.LVL31:
+ 268              	.L8:
+  34:main.c        ****     if(state3==1u){  level0(); }
+ 269              		.loc 1 34 0 is_stmt 1
+ 270 0050 012F     		cmp	r7, #1
+ 271 0052 01D1     		bne	.L9
+  34:main.c        ****     if(state3==1u){  level0(); }
+ 272              		.loc 1 34 0 is_stmt 0 discriminator 1
+ 273 0054 FFF7FEFF 		bl	level_up_1
+ 274              	.LVL32:
+ 275              	.L9:
+  35:main.c        ****     if(state4==1u){  level_down_1(); }
+ 276              		.loc 1 35 0 is_stmt 1
+ 277 0058 012E     		cmp	r6, #1
+ 278 005a 01D1     		bne	.L10
+  35:main.c        ****     if(state4==1u){  level_down_1(); }
+ 279              		.loc 1 35 0 is_stmt 0 discriminator 1
+ 280 005c FFF7FEFF 		bl	level0
+ 281              	.LVL33:
+ 282              	.L10:
+  36:main.c        ****     if(state5==1u){  level_down_2(); }
+ 283              		.loc 1 36 0 is_stmt 1
+ 284 0060 012D     		cmp	r5, #1
+ 285 0062 01D1     		bne	.L11
+  36:main.c        ****     if(state5==1u){  level_down_2(); }
+ 286              		.loc 1 36 0 is_stmt 0 discriminator 1
+ 287 0064 FFF7FEFF 		bl	level_down_1
+ 288              	.LVL34:
+ 289              	.L11:
+  37:main.c        ****         
+ 290              		.loc 1 37 0 is_stmt 1
+ 291 0068 012C     		cmp	r4, #1
+ 292 006a D1D1     		bne	.L12
+  37:main.c        ****         
+ 293              		.loc 1 37 0 is_stmt 0 discriminator 1
+ 294 006c FFF7FEFF 		bl	level_down_2
+ 295              	.LVL35:
+ 296 0070 CEE7     		b	.L12
+ 297              	.LBE2:
+ 298              		.cfi_endproc
+ 299              	.LFE32:
+ 300              		.size	main, .-main
+ 301              		.global	flag
+ 302              		.bss
+ 303              		.align	2
+ 304              		.type	flag, %object
+ 305              		.size	flag, 4
+ 306              	flag:
+ 307 0000 00000000 		.space	4
+ 308              		.text
+ 309              	.Letext0:
+ 310              		.file 2 "Generated_Source\\PSoC4/LED_1.h"
+ 311              		.file 3 "Generated_Source\\PSoC4/LED_2.h"
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 8
+
+
+ 312              		.file 4 "Generated_Source\\PSoC4/LED_3.h"
+ 313              		.file 5 "Generated_Source\\PSoC4/LED_4.h"
+ 314              		.file 6 "Generated_Source\\PSoC4/CapSense_CSD_CSHL.h"
+ 315              		.file 7 "Generated_Source\\PSoC4/CapSense_CSD.h"
+ 316              		.file 8 "Generated_Source\\PSoC4/cytypes.h"
+ 317              		.section	.debug_info,"",%progbits
+ 318              	.Ldebug_info0:
+ 319 0000 76030000 		.4byte	0x376
+ 320 0004 0400     		.2byte	0x4
+ 321 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 322 000a 04       		.byte	0x4
+ 323 000b 01       		.uleb128 0x1
+ 324 000c 87010000 		.4byte	.LASF34
+ 325 0010 0C       		.byte	0xc
+ 326 0011 42020000 		.4byte	.LASF35
+ 327 0015 13000000 		.4byte	.LASF36
+ 328 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 329 001d 00000000 		.4byte	0
+ 330 0021 00000000 		.4byte	.Ldebug_line0
+ 331 0025 02       		.uleb128 0x2
+ 332 0026 01       		.byte	0x1
+ 333 0027 06       		.byte	0x6
+ 334 0028 80020000 		.4byte	.LASF0
+ 335 002c 02       		.uleb128 0x2
+ 336 002d 01       		.byte	0x1
+ 337 002e 08       		.byte	0x8
+ 338 002f 19010000 		.4byte	.LASF1
+ 339 0033 02       		.uleb128 0x2
+ 340 0034 02       		.byte	0x2
+ 341 0035 05       		.byte	0x5
+ 342 0036 61020000 		.4byte	.LASF2
+ 343 003a 02       		.uleb128 0x2
+ 344 003b 02       		.byte	0x2
+ 345 003c 07       		.byte	0x7
+ 346 003d E2000000 		.4byte	.LASF3
+ 347 0041 02       		.uleb128 0x2
+ 348 0042 04       		.byte	0x4
+ 349 0043 05       		.byte	0x5
+ 350 0044 6B020000 		.4byte	.LASF4
+ 351 0048 02       		.uleb128 0x2
+ 352 0049 04       		.byte	0x4
+ 353 004a 07       		.byte	0x7
+ 354 004b D0000000 		.4byte	.LASF5
+ 355 004f 02       		.uleb128 0x2
+ 356 0050 08       		.byte	0x8
+ 357 0051 05       		.byte	0x5
+ 358 0052 34020000 		.4byte	.LASF6
+ 359 0056 02       		.uleb128 0x2
+ 360 0057 08       		.byte	0x8
+ 361 0058 07       		.byte	0x7
+ 362 0059 70010000 		.4byte	.LASF7
+ 363 005d 03       		.uleb128 0x3
+ 364 005e 04       		.byte	0x4
+ 365 005f 05       		.byte	0x5
+ 366 0060 696E7400 		.ascii	"int\000"
+ 367 0064 02       		.uleb128 0x2
+ 368 0065 04       		.byte	0x4
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 9
+
+
+ 369 0066 07       		.byte	0x7
+ 370 0067 63010000 		.4byte	.LASF8
+ 371 006b 04       		.uleb128 0x4
+ 372 006c 57010000 		.4byte	.LASF37
+ 373 0070 08       		.byte	0x8
+ 374 0071 D401     		.2byte	0x1d4
+ 375 0073 48000000 		.4byte	0x48
+ 376 0077 02       		.uleb128 0x2
+ 377 0078 04       		.byte	0x4
+ 378 0079 04       		.byte	0x4
+ 379 007a 9C000000 		.4byte	.LASF9
+ 380 007e 02       		.uleb128 0x2
+ 381 007f 08       		.byte	0x8
+ 382 0080 04       		.byte	0x4
+ 383 0081 27010000 		.4byte	.LASF10
+ 384 0085 02       		.uleb128 0x2
+ 385 0086 01       		.byte	0x1
+ 386 0087 08       		.byte	0x8
+ 387 0088 49020000 		.4byte	.LASF11
+ 388 008c 02       		.uleb128 0x2
+ 389 008d 04       		.byte	0x4
+ 390 008e 07       		.byte	0x7
+ 391 008f 20020000 		.4byte	.LASF12
+ 392 0093 02       		.uleb128 0x2
+ 393 0094 08       		.byte	0x8
+ 394 0095 04       		.byte	0x4
+ 395 0096 74020000 		.4byte	.LASF13
+ 396 009a 05       		.uleb128 0x5
+ 397 009b C9000000 		.4byte	.LASF14
+ 398 009f 01       		.byte	0x1
+ 399 00a0 2B       		.byte	0x2b
+ 400 00a1 00000000 		.4byte	.LFB33
+ 401 00a5 1C000000 		.4byte	.LFE33-.LFB33
+ 402 00a9 01       		.uleb128 0x1
+ 403 00aa 9C       		.byte	0x9c
+ 404 00ab F8000000 		.4byte	0xf8
+ 405 00af 06       		.uleb128 0x6
+ 406 00b0 08000000 		.4byte	.LVL0
+ 407 00b4 0B030000 		.4byte	0x30b
+ 408 00b8 C2000000 		.4byte	0xc2
+ 409 00bc 07       		.uleb128 0x7
+ 410 00bd 01       		.uleb128 0x1
+ 411 00be 50       		.byte	0x50
+ 412 00bf 01       		.uleb128 0x1
+ 413 00c0 30       		.byte	0x30
+ 414 00c1 00       		.byte	0
+ 415 00c2 06       		.uleb128 0x6
+ 416 00c3 0E000000 		.4byte	.LVL1
+ 417 00c7 16030000 		.4byte	0x316
+ 418 00cb D5000000 		.4byte	0xd5
+ 419 00cf 07       		.uleb128 0x7
+ 420 00d0 01       		.uleb128 0x1
+ 421 00d1 50       		.byte	0x50
+ 422 00d2 01       		.uleb128 0x1
+ 423 00d3 30       		.byte	0x30
+ 424 00d4 00       		.byte	0
+ 425 00d5 06       		.uleb128 0x6
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 10
+
+
+ 426 00d6 14000000 		.4byte	.LVL2
+ 427 00da 21030000 		.4byte	0x321
+ 428 00de E8000000 		.4byte	0xe8
+ 429 00e2 07       		.uleb128 0x7
+ 430 00e3 01       		.uleb128 0x1
+ 431 00e4 50       		.byte	0x50
+ 432 00e5 01       		.uleb128 0x1
+ 433 00e6 30       		.byte	0x30
+ 434 00e7 00       		.byte	0
+ 435 00e8 08       		.uleb128 0x8
+ 436 00e9 1A000000 		.4byte	.LVL3
+ 437 00ed 2C030000 		.4byte	0x32c
+ 438 00f1 07       		.uleb128 0x7
+ 439 00f2 01       		.uleb128 0x1
+ 440 00f3 50       		.byte	0x50
+ 441 00f4 01       		.uleb128 0x1
+ 442 00f5 30       		.byte	0x30
+ 443 00f6 00       		.byte	0
+ 444 00f7 00       		.byte	0
+ 445 00f8 05       		.uleb128 0x5
+ 446 00f9 29020000 		.4byte	.LASF15
+ 447 00fd 01       		.byte	0x1
+ 448 00fe 32       		.byte	0x32
+ 449 00ff 00000000 		.4byte	.LFB34
+ 450 0103 10000000 		.4byte	.LFE34-.LFB34
+ 451 0107 01       		.uleb128 0x1
+ 452 0108 9C       		.byte	0x9c
+ 453 0109 30010000 		.4byte	0x130
+ 454 010d 06       		.uleb128 0x6
+ 455 010e 08000000 		.4byte	.LVL4
+ 456 0112 21030000 		.4byte	0x321
+ 457 0116 20010000 		.4byte	0x120
+ 458 011a 07       		.uleb128 0x7
+ 459 011b 01       		.uleb128 0x1
+ 460 011c 50       		.byte	0x50
+ 461 011d 01       		.uleb128 0x1
+ 462 011e 31       		.byte	0x31
+ 463 011f 00       		.byte	0
+ 464 0120 08       		.uleb128 0x8
+ 465 0121 0E000000 		.4byte	.LVL5
+ 466 0125 2C030000 		.4byte	0x32c
+ 467 0129 07       		.uleb128 0x7
+ 468 012a 01       		.uleb128 0x1
+ 469 012b 50       		.byte	0x50
+ 470 012c 01       		.uleb128 0x1
+ 471 012d 30       		.byte	0x30
+ 472 012e 00       		.byte	0
+ 473 012f 00       		.byte	0
+ 474 0130 05       		.uleb128 0x5
+ 475 0131 15020000 		.4byte	.LASF16
+ 476 0135 01       		.byte	0x1
+ 477 0136 36       		.byte	0x36
+ 478 0137 00000000 		.4byte	.LFB35
+ 479 013b 10000000 		.4byte	.LFE35-.LFB35
+ 480 013f 01       		.uleb128 0x1
+ 481 0140 9C       		.byte	0x9c
+ 482 0141 68010000 		.4byte	0x168
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 11
+
+
+ 483 0145 06       		.uleb128 0x6
+ 484 0146 08000000 		.4byte	.LVL6
+ 485 014a 21030000 		.4byte	0x321
+ 486 014e 58010000 		.4byte	0x158
+ 487 0152 07       		.uleb128 0x7
+ 488 0153 01       		.uleb128 0x1
+ 489 0154 50       		.byte	0x50
+ 490 0155 01       		.uleb128 0x1
+ 491 0156 31       		.byte	0x31
+ 492 0157 00       		.byte	0
+ 493 0158 08       		.uleb128 0x8
+ 494 0159 0E000000 		.4byte	.LVL7
+ 495 015d 2C030000 		.4byte	0x32c
+ 496 0161 07       		.uleb128 0x7
+ 497 0162 01       		.uleb128 0x1
+ 498 0163 50       		.byte	0x50
+ 499 0164 01       		.uleb128 0x1
+ 500 0165 31       		.byte	0x31
+ 501 0166 00       		.byte	0
+ 502 0167 00       		.byte	0
+ 503 0168 05       		.uleb128 0x5
+ 504 0169 61000000 		.4byte	.LASF17
+ 505 016d 01       		.byte	0x1
+ 506 016e 3B       		.byte	0x3b
+ 507 016f 00000000 		.4byte	.LFB36
+ 508 0173 10000000 		.4byte	.LFE36-.LFB36
+ 509 0177 01       		.uleb128 0x1
+ 510 0178 9C       		.byte	0x9c
+ 511 0179 A0010000 		.4byte	0x1a0
+ 512 017d 06       		.uleb128 0x6
+ 513 017e 08000000 		.4byte	.LVL8
+ 514 0182 16030000 		.4byte	0x316
+ 515 0186 90010000 		.4byte	0x190
+ 516 018a 07       		.uleb128 0x7
+ 517 018b 01       		.uleb128 0x1
+ 518 018c 50       		.byte	0x50
+ 519 018d 01       		.uleb128 0x1
+ 520 018e 31       		.byte	0x31
+ 521 018f 00       		.byte	0
+ 522 0190 08       		.uleb128 0x8
+ 523 0191 0E000000 		.4byte	.LVL9
+ 524 0195 0B030000 		.4byte	0x30b
+ 525 0199 07       		.uleb128 0x7
+ 526 019a 01       		.uleb128 0x1
+ 527 019b 50       		.byte	0x50
+ 528 019c 01       		.uleb128 0x1
+ 529 019d 30       		.byte	0x30
+ 530 019e 00       		.byte	0
+ 531 019f 00       		.byte	0
+ 532 01a0 05       		.uleb128 0x5
+ 533 01a1 6E000000 		.4byte	.LASF18
+ 534 01a5 01       		.byte	0x1
+ 535 01a6 3F       		.byte	0x3f
+ 536 01a7 00000000 		.4byte	.LFB37
+ 537 01ab 10000000 		.4byte	.LFE37-.LFB37
+ 538 01af 01       		.uleb128 0x1
+ 539 01b0 9C       		.byte	0x9c
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 12
+
+
+ 540 01b1 D8010000 		.4byte	0x1d8
+ 541 01b5 06       		.uleb128 0x6
+ 542 01b6 08000000 		.4byte	.LVL10
+ 543 01ba 16030000 		.4byte	0x316
+ 544 01be C8010000 		.4byte	0x1c8
+ 545 01c2 07       		.uleb128 0x7
+ 546 01c3 01       		.uleb128 0x1
+ 547 01c4 50       		.byte	0x50
+ 548 01c5 01       		.uleb128 0x1
+ 549 01c6 31       		.byte	0x31
+ 550 01c7 00       		.byte	0
+ 551 01c8 08       		.uleb128 0x8
+ 552 01c9 0E000000 		.4byte	.LVL11
+ 553 01cd 0B030000 		.4byte	0x30b
+ 554 01d1 07       		.uleb128 0x7
+ 555 01d2 01       		.uleb128 0x1
+ 556 01d3 50       		.byte	0x50
+ 557 01d4 01       		.uleb128 0x1
+ 558 01d5 31       		.byte	0x31
+ 559 01d6 00       		.byte	0
+ 560 01d7 00       		.byte	0
+ 561 01d8 09       		.uleb128 0x9
+ 562 01d9 2E010000 		.4byte	.LASF38
+ 563 01dd 01       		.byte	0x1
+ 564 01de 0C       		.byte	0xc
+ 565 01df 5D000000 		.4byte	0x5d
+ 566 01e3 00000000 		.4byte	.LFB32
+ 567 01e7 72000000 		.4byte	.LFE32-.LFB32
+ 568 01eb 01       		.uleb128 0x1
+ 569 01ec 9C       		.byte	0x9c
+ 570 01ed FA020000 		.4byte	0x2fa
+ 571 01f1 0A       		.uleb128 0xa
+ 572 01f2 10000000 		.4byte	.LBB2
+ 573 01f6 62000000 		.4byte	.LBE2-.LBB2
+ 574 01fa E7020000 		.4byte	0x2e7
+ 575 01fe 0B       		.uleb128 0xb
+ 576 01ff 87000000 		.4byte	.LASF19
+ 577 0203 01       		.byte	0x1
+ 578 0204 1B       		.byte	0x1b
+ 579 0205 6B000000 		.4byte	0x6b
+ 580 0209 00000000 		.4byte	.LLST0
+ 581 020d 0B       		.uleb128 0xb
+ 582 020e 8E000000 		.4byte	.LASF20
+ 583 0212 01       		.byte	0x1
+ 584 0213 1C       		.byte	0x1c
+ 585 0214 6B000000 		.4byte	0x6b
+ 586 0218 1E000000 		.4byte	.LLST1
+ 587 021c 0B       		.uleb128 0xb
+ 588 021d 95000000 		.4byte	.LASF21
+ 589 0221 01       		.byte	0x1
+ 590 0222 1D       		.byte	0x1d
+ 591 0223 6B000000 		.4byte	0x6b
+ 592 0227 3C000000 		.4byte	.LLST2
+ 593 022b 0B       		.uleb128 0xb
+ 594 022c 0C000000 		.4byte	.LASF22
+ 595 0230 01       		.byte	0x1
+ 596 0231 1E       		.byte	0x1e
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 13
+
+
+ 597 0232 6B000000 		.4byte	0x6b
+ 598 0236 5A000000 		.4byte	.LLST3
+ 599 023a 0B       		.uleb128 0xb
+ 600 023b A2000000 		.4byte	.LASF23
+ 601 023f 01       		.byte	0x1
+ 602 0240 1F       		.byte	0x1f
+ 603 0241 6B000000 		.4byte	0x6b
+ 604 0245 78000000 		.4byte	.LLST4
+ 605 0249 0C       		.uleb128 0xc
+ 606 024a 14000000 		.4byte	.LVL14
+ 607 024e 37030000 		.4byte	0x337
+ 608 0252 0C       		.uleb128 0xc
+ 609 0253 18000000 		.4byte	.LVL15
+ 610 0257 42030000 		.4byte	0x342
+ 611 025b 0C       		.uleb128 0xc
+ 612 025c 1C000000 		.4byte	.LVL16
+ 613 0260 4D030000 		.4byte	0x34d
+ 614 0264 0C       		.uleb128 0xc
+ 615 0265 24000000 		.4byte	.LVL17
+ 616 0269 58030000 		.4byte	0x358
+ 617 026d 06       		.uleb128 0x6
+ 618 026e 2C000000 		.4byte	.LVL20
+ 619 0272 58030000 		.4byte	0x358
+ 620 0276 80020000 		.4byte	0x280
+ 621 027a 07       		.uleb128 0x7
+ 622 027b 01       		.uleb128 0x1
+ 623 027c 50       		.byte	0x50
+ 624 027d 01       		.uleb128 0x1
+ 625 027e 31       		.byte	0x31
+ 626 027f 00       		.byte	0
+ 627 0280 06       		.uleb128 0x6
+ 628 0281 34000000 		.4byte	.LVL23
+ 629 0285 58030000 		.4byte	0x358
+ 630 0289 93020000 		.4byte	0x293
+ 631 028d 07       		.uleb128 0x7
+ 632 028e 01       		.uleb128 0x1
+ 633 028f 50       		.byte	0x50
+ 634 0290 01       		.uleb128 0x1
+ 635 0291 32       		.byte	0x32
+ 636 0292 00       		.byte	0
+ 637 0293 06       		.uleb128 0x6
+ 638 0294 3C000000 		.4byte	.LVL26
+ 639 0298 58030000 		.4byte	0x358
+ 640 029c A6020000 		.4byte	0x2a6
+ 641 02a0 07       		.uleb128 0x7
+ 642 02a1 01       		.uleb128 0x1
+ 643 02a2 50       		.byte	0x50
+ 644 02a3 01       		.uleb128 0x1
+ 645 02a4 33       		.byte	0x33
+ 646 02a5 00       		.byte	0
+ 647 02a6 06       		.uleb128 0x6
+ 648 02a7 44000000 		.4byte	.LVL29
+ 649 02ab 58030000 		.4byte	0x358
+ 650 02af B9020000 		.4byte	0x2b9
+ 651 02b3 07       		.uleb128 0x7
+ 652 02b4 01       		.uleb128 0x1
+ 653 02b5 50       		.byte	0x50
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 14
+
+
+ 654 02b6 01       		.uleb128 0x1
+ 655 02b7 34       		.byte	0x34
+ 656 02b8 00       		.byte	0
+ 657 02b9 0C       		.uleb128 0xc
+ 658 02ba 50000000 		.4byte	.LVL31
+ 659 02be 30010000 		.4byte	0x130
+ 660 02c2 0C       		.uleb128 0xc
+ 661 02c3 58000000 		.4byte	.LVL32
+ 662 02c7 F8000000 		.4byte	0xf8
+ 663 02cb 0C       		.uleb128 0xc
+ 664 02cc 60000000 		.4byte	.LVL33
+ 665 02d0 9A000000 		.4byte	0x9a
+ 666 02d4 0C       		.uleb128 0xc
+ 667 02d5 68000000 		.4byte	.LVL34
+ 668 02d9 68010000 		.4byte	0x168
+ 669 02dd 0C       		.uleb128 0xc
+ 670 02de 70000000 		.4byte	.LVL35
+ 671 02e2 A0010000 		.4byte	0x1a0
+ 672 02e6 00       		.byte	0
+ 673 02e7 0C       		.uleb128 0xc
+ 674 02e8 0C000000 		.4byte	.LVL12
+ 675 02ec 63030000 		.4byte	0x363
+ 676 02f0 0C       		.uleb128 0xc
+ 677 02f1 10000000 		.4byte	.LVL13
+ 678 02f5 6E030000 		.4byte	0x36e
+ 679 02f9 00       		.byte	0
+ 680 02fa 0D       		.uleb128 0xd
+ 681 02fb 5E010000 		.4byte	.LASF39
+ 682 02ff 01       		.byte	0x1
+ 683 0300 04       		.byte	0x4
+ 684 0301 5D000000 		.4byte	0x5d
+ 685 0305 05       		.uleb128 0x5
+ 686 0306 03       		.byte	0x3
+ 687 0307 00000000 		.4byte	flag
+ 688 030b 0E       		.uleb128 0xe
+ 689 030c 8C020000 		.4byte	.LASF24
+ 690 0310 8C020000 		.4byte	.LASF24
+ 691 0314 02       		.byte	0x2
+ 692 0315 33       		.byte	0x33
+ 693 0316 0E       		.uleb128 0xe
+ 694 0317 00000000 		.4byte	.LASF25
+ 695 031b 00000000 		.4byte	.LASF25
+ 696 031f 03       		.byte	0x3
+ 697 0320 33       		.byte	0x33
+ 698 0321 0E       		.uleb128 0xe
+ 699 0322 55000000 		.4byte	.LASF26
+ 700 0326 55000000 		.4byte	.LASF26
+ 701 032a 04       		.byte	0x4
+ 702 032b 33       		.byte	0x33
+ 703 032c 0E       		.uleb128 0xe
+ 704 032d 7B000000 		.4byte	.LASF27
+ 705 0331 7B000000 		.4byte	.LASF27
+ 706 0335 05       		.byte	0x5
+ 707 0336 33       		.byte	0x33
+ 708 0337 0E       		.uleb128 0xe
+ 709 0338 F5000000 		.4byte	.LASF28
+ 710 033c F5000000 		.4byte	.LASF28
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 15
+
+
+ 711 0340 06       		.byte	0x6
+ 712 0341 B3       		.byte	0xb3
+ 713 0342 0E       		.uleb128 0xe
+ 714 0343 A9000000 		.4byte	.LASF29
+ 715 0347 A9000000 		.4byte	.LASF29
+ 716 034b 07       		.byte	0x7
+ 717 034c A2       		.byte	0xa2
+ 718 034d 0E       		.uleb128 0xe
+ 719 034e 98020000 		.4byte	.LASF30
+ 720 0352 98020000 		.4byte	.LASF30
+ 721 0356 07       		.byte	0x7
+ 722 0357 9F       		.byte	0x9f
+ 723 0358 0E       		.uleb128 0xe
+ 724 0359 AC020000 		.4byte	.LASF31
+ 725 035d AC020000 		.4byte	.LASF31
+ 726 0361 06       		.byte	0x6
+ 727 0362 DA       		.byte	0xda
+ 728 0363 0E       		.uleb128 0xe
+ 729 0364 4E020000 		.4byte	.LASF32
+ 730 0368 4E020000 		.4byte	.LASF32
+ 731 036c 07       		.byte	0x7
+ 732 036d 99       		.byte	0x99
+ 733 036e 0E       		.uleb128 0xe
+ 734 036f 33010000 		.4byte	.LASF33
+ 735 0373 33010000 		.4byte	.LASF33
+ 736 0377 06       		.byte	0x6
+ 737 0378 AF       		.byte	0xaf
+ 738 0379 00       		.byte	0
+ 739              		.section	.debug_abbrev,"",%progbits
+ 740              	.Ldebug_abbrev0:
+ 741 0000 01       		.uleb128 0x1
+ 742 0001 11       		.uleb128 0x11
+ 743 0002 01       		.byte	0x1
+ 744 0003 25       		.uleb128 0x25
+ 745 0004 0E       		.uleb128 0xe
+ 746 0005 13       		.uleb128 0x13
+ 747 0006 0B       		.uleb128 0xb
+ 748 0007 03       		.uleb128 0x3
+ 749 0008 0E       		.uleb128 0xe
+ 750 0009 1B       		.uleb128 0x1b
+ 751 000a 0E       		.uleb128 0xe
+ 752 000b 55       		.uleb128 0x55
+ 753 000c 17       		.uleb128 0x17
+ 754 000d 11       		.uleb128 0x11
+ 755 000e 01       		.uleb128 0x1
+ 756 000f 10       		.uleb128 0x10
+ 757 0010 17       		.uleb128 0x17
+ 758 0011 00       		.byte	0
+ 759 0012 00       		.byte	0
+ 760 0013 02       		.uleb128 0x2
+ 761 0014 24       		.uleb128 0x24
+ 762 0015 00       		.byte	0
+ 763 0016 0B       		.uleb128 0xb
+ 764 0017 0B       		.uleb128 0xb
+ 765 0018 3E       		.uleb128 0x3e
+ 766 0019 0B       		.uleb128 0xb
+ 767 001a 03       		.uleb128 0x3
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 16
+
+
+ 768 001b 0E       		.uleb128 0xe
+ 769 001c 00       		.byte	0
+ 770 001d 00       		.byte	0
+ 771 001e 03       		.uleb128 0x3
+ 772 001f 24       		.uleb128 0x24
+ 773 0020 00       		.byte	0
+ 774 0021 0B       		.uleb128 0xb
+ 775 0022 0B       		.uleb128 0xb
+ 776 0023 3E       		.uleb128 0x3e
+ 777 0024 0B       		.uleb128 0xb
+ 778 0025 03       		.uleb128 0x3
+ 779 0026 08       		.uleb128 0x8
+ 780 0027 00       		.byte	0
+ 781 0028 00       		.byte	0
+ 782 0029 04       		.uleb128 0x4
+ 783 002a 16       		.uleb128 0x16
+ 784 002b 00       		.byte	0
+ 785 002c 03       		.uleb128 0x3
+ 786 002d 0E       		.uleb128 0xe
+ 787 002e 3A       		.uleb128 0x3a
+ 788 002f 0B       		.uleb128 0xb
+ 789 0030 3B       		.uleb128 0x3b
+ 790 0031 05       		.uleb128 0x5
+ 791 0032 49       		.uleb128 0x49
+ 792 0033 13       		.uleb128 0x13
+ 793 0034 00       		.byte	0
+ 794 0035 00       		.byte	0
+ 795 0036 05       		.uleb128 0x5
+ 796 0037 2E       		.uleb128 0x2e
+ 797 0038 01       		.byte	0x1
+ 798 0039 3F       		.uleb128 0x3f
+ 799 003a 19       		.uleb128 0x19
+ 800 003b 03       		.uleb128 0x3
+ 801 003c 0E       		.uleb128 0xe
+ 802 003d 3A       		.uleb128 0x3a
+ 803 003e 0B       		.uleb128 0xb
+ 804 003f 3B       		.uleb128 0x3b
+ 805 0040 0B       		.uleb128 0xb
+ 806 0041 11       		.uleb128 0x11
+ 807 0042 01       		.uleb128 0x1
+ 808 0043 12       		.uleb128 0x12
+ 809 0044 06       		.uleb128 0x6
+ 810 0045 40       		.uleb128 0x40
+ 811 0046 18       		.uleb128 0x18
+ 812 0047 9742     		.uleb128 0x2117
+ 813 0049 19       		.uleb128 0x19
+ 814 004a 01       		.uleb128 0x1
+ 815 004b 13       		.uleb128 0x13
+ 816 004c 00       		.byte	0
+ 817 004d 00       		.byte	0
+ 818 004e 06       		.uleb128 0x6
+ 819 004f 898201   		.uleb128 0x4109
+ 820 0052 01       		.byte	0x1
+ 821 0053 11       		.uleb128 0x11
+ 822 0054 01       		.uleb128 0x1
+ 823 0055 31       		.uleb128 0x31
+ 824 0056 13       		.uleb128 0x13
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 17
+
+
+ 825 0057 01       		.uleb128 0x1
+ 826 0058 13       		.uleb128 0x13
+ 827 0059 00       		.byte	0
+ 828 005a 00       		.byte	0
+ 829 005b 07       		.uleb128 0x7
+ 830 005c 8A8201   		.uleb128 0x410a
+ 831 005f 00       		.byte	0
+ 832 0060 02       		.uleb128 0x2
+ 833 0061 18       		.uleb128 0x18
+ 834 0062 9142     		.uleb128 0x2111
+ 835 0064 18       		.uleb128 0x18
+ 836 0065 00       		.byte	0
+ 837 0066 00       		.byte	0
+ 838 0067 08       		.uleb128 0x8
+ 839 0068 898201   		.uleb128 0x4109
+ 840 006b 01       		.byte	0x1
+ 841 006c 11       		.uleb128 0x11
+ 842 006d 01       		.uleb128 0x1
+ 843 006e 31       		.uleb128 0x31
+ 844 006f 13       		.uleb128 0x13
+ 845 0070 00       		.byte	0
+ 846 0071 00       		.byte	0
+ 847 0072 09       		.uleb128 0x9
+ 848 0073 2E       		.uleb128 0x2e
+ 849 0074 01       		.byte	0x1
+ 850 0075 3F       		.uleb128 0x3f
+ 851 0076 19       		.uleb128 0x19
+ 852 0077 03       		.uleb128 0x3
+ 853 0078 0E       		.uleb128 0xe
+ 854 0079 3A       		.uleb128 0x3a
+ 855 007a 0B       		.uleb128 0xb
+ 856 007b 3B       		.uleb128 0x3b
+ 857 007c 0B       		.uleb128 0xb
+ 858 007d 27       		.uleb128 0x27
+ 859 007e 19       		.uleb128 0x19
+ 860 007f 49       		.uleb128 0x49
+ 861 0080 13       		.uleb128 0x13
+ 862 0081 8701     		.uleb128 0x87
+ 863 0083 19       		.uleb128 0x19
+ 864 0084 11       		.uleb128 0x11
+ 865 0085 01       		.uleb128 0x1
+ 866 0086 12       		.uleb128 0x12
+ 867 0087 06       		.uleb128 0x6
+ 868 0088 40       		.uleb128 0x40
+ 869 0089 18       		.uleb128 0x18
+ 870 008a 9742     		.uleb128 0x2117
+ 871 008c 19       		.uleb128 0x19
+ 872 008d 01       		.uleb128 0x1
+ 873 008e 13       		.uleb128 0x13
+ 874 008f 00       		.byte	0
+ 875 0090 00       		.byte	0
+ 876 0091 0A       		.uleb128 0xa
+ 877 0092 0B       		.uleb128 0xb
+ 878 0093 01       		.byte	0x1
+ 879 0094 11       		.uleb128 0x11
+ 880 0095 01       		.uleb128 0x1
+ 881 0096 12       		.uleb128 0x12
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 18
+
+
+ 882 0097 06       		.uleb128 0x6
+ 883 0098 01       		.uleb128 0x1
+ 884 0099 13       		.uleb128 0x13
+ 885 009a 00       		.byte	0
+ 886 009b 00       		.byte	0
+ 887 009c 0B       		.uleb128 0xb
+ 888 009d 34       		.uleb128 0x34
+ 889 009e 00       		.byte	0
+ 890 009f 03       		.uleb128 0x3
+ 891 00a0 0E       		.uleb128 0xe
+ 892 00a1 3A       		.uleb128 0x3a
+ 893 00a2 0B       		.uleb128 0xb
+ 894 00a3 3B       		.uleb128 0x3b
+ 895 00a4 0B       		.uleb128 0xb
+ 896 00a5 49       		.uleb128 0x49
+ 897 00a6 13       		.uleb128 0x13
+ 898 00a7 02       		.uleb128 0x2
+ 899 00a8 17       		.uleb128 0x17
+ 900 00a9 00       		.byte	0
+ 901 00aa 00       		.byte	0
+ 902 00ab 0C       		.uleb128 0xc
+ 903 00ac 898201   		.uleb128 0x4109
+ 904 00af 00       		.byte	0
+ 905 00b0 11       		.uleb128 0x11
+ 906 00b1 01       		.uleb128 0x1
+ 907 00b2 31       		.uleb128 0x31
+ 908 00b3 13       		.uleb128 0x13
+ 909 00b4 00       		.byte	0
+ 910 00b5 00       		.byte	0
+ 911 00b6 0D       		.uleb128 0xd
+ 912 00b7 34       		.uleb128 0x34
+ 913 00b8 00       		.byte	0
+ 914 00b9 03       		.uleb128 0x3
+ 915 00ba 0E       		.uleb128 0xe
+ 916 00bb 3A       		.uleb128 0x3a
+ 917 00bc 0B       		.uleb128 0xb
+ 918 00bd 3B       		.uleb128 0x3b
+ 919 00be 0B       		.uleb128 0xb
+ 920 00bf 49       		.uleb128 0x49
+ 921 00c0 13       		.uleb128 0x13
+ 922 00c1 3F       		.uleb128 0x3f
+ 923 00c2 19       		.uleb128 0x19
+ 924 00c3 02       		.uleb128 0x2
+ 925 00c4 18       		.uleb128 0x18
+ 926 00c5 00       		.byte	0
+ 927 00c6 00       		.byte	0
+ 928 00c7 0E       		.uleb128 0xe
+ 929 00c8 2E       		.uleb128 0x2e
+ 930 00c9 00       		.byte	0
+ 931 00ca 3F       		.uleb128 0x3f
+ 932 00cb 19       		.uleb128 0x19
+ 933 00cc 3C       		.uleb128 0x3c
+ 934 00cd 19       		.uleb128 0x19
+ 935 00ce 6E       		.uleb128 0x6e
+ 936 00cf 0E       		.uleb128 0xe
+ 937 00d0 03       		.uleb128 0x3
+ 938 00d1 0E       		.uleb128 0xe
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 19
+
+
+ 939 00d2 3A       		.uleb128 0x3a
+ 940 00d3 0B       		.uleb128 0xb
+ 941 00d4 3B       		.uleb128 0x3b
+ 942 00d5 0B       		.uleb128 0xb
+ 943 00d6 00       		.byte	0
+ 944 00d7 00       		.byte	0
+ 945 00d8 00       		.byte	0
+ 946              		.section	.debug_loc,"",%progbits
+ 947              	.Ldebug_loc0:
+ 948              	.LLST0:
+ 949 0000 26000000 		.4byte	.LVL18
+ 950 0004 28000000 		.4byte	.LVL19
+ 951 0008 0100     		.2byte	0x1
+ 952 000a 50       		.byte	0x50
+ 953 000b 28000000 		.4byte	.LVL19
+ 954 000f 72000000 		.4byte	.LFE32
+ 955 0013 0100     		.2byte	0x1
+ 956 0015 58       		.byte	0x58
+ 957 0016 00000000 		.4byte	0
+ 958 001a 00000000 		.4byte	0
+ 959              	.LLST1:
+ 960 001e 2E000000 		.4byte	.LVL21
+ 961 0022 30000000 		.4byte	.LVL22
+ 962 0026 0100     		.2byte	0x1
+ 963 0028 50       		.byte	0x50
+ 964 0029 30000000 		.4byte	.LVL22
+ 965 002d 72000000 		.4byte	.LFE32
+ 966 0031 0100     		.2byte	0x1
+ 967 0033 57       		.byte	0x57
+ 968 0034 00000000 		.4byte	0
+ 969 0038 00000000 		.4byte	0
+ 970              	.LLST2:
+ 971 003c 36000000 		.4byte	.LVL24
+ 972 0040 38000000 		.4byte	.LVL25
+ 973 0044 0100     		.2byte	0x1
+ 974 0046 50       		.byte	0x50
+ 975 0047 38000000 		.4byte	.LVL25
+ 976 004b 72000000 		.4byte	.LFE32
+ 977 004f 0100     		.2byte	0x1
+ 978 0051 56       		.byte	0x56
+ 979 0052 00000000 		.4byte	0
+ 980 0056 00000000 		.4byte	0
+ 981              	.LLST3:
+ 982 005a 3E000000 		.4byte	.LVL27
+ 983 005e 40000000 		.4byte	.LVL28
+ 984 0062 0100     		.2byte	0x1
+ 985 0064 50       		.byte	0x50
+ 986 0065 40000000 		.4byte	.LVL28
+ 987 0069 72000000 		.4byte	.LFE32
+ 988 006d 0100     		.2byte	0x1
+ 989 006f 55       		.byte	0x55
+ 990 0070 00000000 		.4byte	0
+ 991 0074 00000000 		.4byte	0
+ 992              	.LLST4:
+ 993 0078 46000000 		.4byte	.LVL30
+ 994 007c 4F000000 		.4byte	.LVL31-1
+ 995 0080 0100     		.2byte	0x1
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 20
+
+
+ 996 0082 50       		.byte	0x50
+ 997 0083 4F000000 		.4byte	.LVL31-1
+ 998 0087 72000000 		.4byte	.LFE32
+ 999 008b 0100     		.2byte	0x1
+ 1000 008d 54       		.byte	0x54
+ 1001 008e 00000000 		.4byte	0
+ 1002 0092 00000000 		.4byte	0
+ 1003              		.section	.debug_aranges,"",%progbits
+ 1004 0000 44000000 		.4byte	0x44
+ 1005 0004 0200     		.2byte	0x2
+ 1006 0006 00000000 		.4byte	.Ldebug_info0
+ 1007 000a 04       		.byte	0x4
+ 1008 000b 00       		.byte	0
+ 1009 000c 0000     		.2byte	0
+ 1010 000e 0000     		.2byte	0
+ 1011 0010 00000000 		.4byte	.LFB33
+ 1012 0014 1C000000 		.4byte	.LFE33-.LFB33
+ 1013 0018 00000000 		.4byte	.LFB34
+ 1014 001c 10000000 		.4byte	.LFE34-.LFB34
+ 1015 0020 00000000 		.4byte	.LFB35
+ 1016 0024 10000000 		.4byte	.LFE35-.LFB35
+ 1017 0028 00000000 		.4byte	.LFB36
+ 1018 002c 10000000 		.4byte	.LFE36-.LFB36
+ 1019 0030 00000000 		.4byte	.LFB37
+ 1020 0034 10000000 		.4byte	.LFE37-.LFB37
+ 1021 0038 00000000 		.4byte	.LFB32
+ 1022 003c 72000000 		.4byte	.LFE32-.LFB32
+ 1023 0040 00000000 		.4byte	0
+ 1024 0044 00000000 		.4byte	0
+ 1025              		.section	.debug_ranges,"",%progbits
+ 1026              	.Ldebug_ranges0:
+ 1027 0000 00000000 		.4byte	.LFB33
+ 1028 0004 1C000000 		.4byte	.LFE33
+ 1029 0008 00000000 		.4byte	.LFB34
+ 1030 000c 10000000 		.4byte	.LFE34
+ 1031 0010 00000000 		.4byte	.LFB35
+ 1032 0014 10000000 		.4byte	.LFE35
+ 1033 0018 00000000 		.4byte	.LFB36
+ 1034 001c 10000000 		.4byte	.LFE36
+ 1035 0020 00000000 		.4byte	.LFB37
+ 1036 0024 10000000 		.4byte	.LFE37
+ 1037 0028 00000000 		.4byte	.LFB32
+ 1038 002c 72000000 		.4byte	.LFE32
+ 1039 0030 00000000 		.4byte	0
+ 1040 0034 00000000 		.4byte	0
+ 1041              		.section	.debug_line,"",%progbits
+ 1042              	.Ldebug_line0:
+ 1043 0000 3D010000 		.section	.debug_str,"MS",%progbits,1
+ 1043      02009600 
+ 1043      00000201 
+ 1043      FB0E0D00 
+ 1043      01010101 
+ 1044              	.LASF25:
+ 1045 0000 4C45445F 		.ascii	"LED_2_Write\000"
+ 1045      325F5772 
+ 1045      69746500 
+ 1046              	.LASF22:
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 21
+
+
+ 1047 000c 73746174 		.ascii	"state4\000"
+ 1047      653400
+ 1048              	.LASF36:
+ 1049 0013 443A5C5A 		.ascii	"D:\\Zuru Shaunak\\Documents\\PSoC Creator\\Workspac"
+ 1049      75727520 
+ 1049      53686175 
+ 1049      6E616B5C 
+ 1049      446F6375 
+ 1050 0042 6530325C 		.ascii	"e02\\Design01.cydsn\000"
+ 1050      44657369 
+ 1050      676E3031 
+ 1050      2E637964 
+ 1050      736E00
+ 1051              	.LASF26:
+ 1052 0055 4C45445F 		.ascii	"LED_3_Write\000"
+ 1052      335F5772 
+ 1052      69746500 
+ 1053              	.LASF17:
+ 1054 0061 6C657665 		.ascii	"level_down_1\000"
+ 1054      6C5F646F 
+ 1054      776E5F31 
+ 1054      00
+ 1055              	.LASF18:
+ 1056 006e 6C657665 		.ascii	"level_down_2\000"
+ 1056      6C5F646F 
+ 1056      776E5F32 
+ 1056      00
+ 1057              	.LASF27:
+ 1058 007b 4C45445F 		.ascii	"LED_4_Write\000"
+ 1058      345F5772 
+ 1058      69746500 
+ 1059              	.LASF19:
+ 1060 0087 73746174 		.ascii	"state1\000"
+ 1060      653100
+ 1061              	.LASF20:
+ 1062 008e 73746174 		.ascii	"state2\000"
+ 1062      653200
+ 1063              	.LASF21:
+ 1064 0095 73746174 		.ascii	"state3\000"
+ 1064      653300
+ 1065              	.LASF9:
+ 1066 009c 666C6F61 		.ascii	"float\000"
+ 1066      7400
+ 1067              	.LASF23:
+ 1068 00a2 73746174 		.ascii	"state5\000"
+ 1068      653500
+ 1069              	.LASF29:
+ 1070 00a9 43617053 		.ascii	"CapSense_CSD_ScanEnabledWidgets\000"
+ 1070      656E7365 
+ 1070      5F435344 
+ 1070      5F536361 
+ 1070      6E456E61 
+ 1071              	.LASF14:
+ 1072 00c9 6C657665 		.ascii	"level0\000"
+ 1072      6C3000
+ 1073              	.LASF5:
+ 1074 00d0 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 22
+
+
+ 1074      20756E73 
+ 1074      69676E65 
+ 1074      6420696E 
+ 1074      7400
+ 1075              	.LASF3:
+ 1076 00e2 73686F72 		.ascii	"short unsigned int\000"
+ 1076      7420756E 
+ 1076      7369676E 
+ 1076      65642069 
+ 1076      6E7400
+ 1077              	.LASF28:
+ 1078 00f5 43617053 		.ascii	"CapSense_CSD_UpdateEnabledBaselines\000"
+ 1078      656E7365 
+ 1078      5F435344 
+ 1078      5F557064 
+ 1078      61746545 
+ 1079              	.LASF1:
+ 1080 0119 756E7369 		.ascii	"unsigned char\000"
+ 1080      676E6564 
+ 1080      20636861 
+ 1080      7200
+ 1081              	.LASF10:
+ 1082 0127 646F7562 		.ascii	"double\000"
+ 1082      6C6500
+ 1083              	.LASF38:
+ 1084 012e 6D61696E 		.ascii	"main\000"
+ 1084      00
+ 1085              	.LASF33:
+ 1086 0133 43617053 		.ascii	"CapSense_CSD_InitializeAllBaselines\000"
+ 1086      656E7365 
+ 1086      5F435344 
+ 1086      5F496E69 
+ 1086      7469616C 
+ 1087              	.LASF37:
+ 1088 0157 75696E74 		.ascii	"uint32\000"
+ 1088      333200
+ 1089              	.LASF39:
+ 1090 015e 666C6167 		.ascii	"flag\000"
+ 1090      00
+ 1091              	.LASF8:
+ 1092 0163 756E7369 		.ascii	"unsigned int\000"
+ 1092      676E6564 
+ 1092      20696E74 
+ 1092      00
+ 1093              	.LASF7:
+ 1094 0170 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1094      206C6F6E 
+ 1094      6720756E 
+ 1094      7369676E 
+ 1094      65642069 
+ 1095              	.LASF34:
+ 1096 0187 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1096      43313120 
+ 1096      352E342E 
+ 1096      31203230 
+ 1096      31363036 
+ 1097 01ba 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 23
+
+
+ 1097      20726576 
+ 1097      6973696F 
+ 1097      6E203233 
+ 1097      37373135 
+ 1098 01ed 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1098      66756E63 
+ 1098      74696F6E 
+ 1098      2D736563 
+ 1098      74696F6E 
+ 1099              	.LASF16:
+ 1100 0215 6C657665 		.ascii	"level_up_2\000"
+ 1100      6C5F7570 
+ 1100      5F3200
+ 1101              	.LASF12:
+ 1102 0220 73697A65 		.ascii	"sizetype\000"
+ 1102      74797065 
+ 1102      00
+ 1103              	.LASF15:
+ 1104 0229 6C657665 		.ascii	"level_up_1\000"
+ 1104      6C5F7570 
+ 1104      5F3100
+ 1105              	.LASF6:
+ 1106 0234 6C6F6E67 		.ascii	"long long int\000"
+ 1106      206C6F6E 
+ 1106      6720696E 
+ 1106      7400
+ 1107              	.LASF35:
+ 1108 0242 6D61696E 		.ascii	"main.c\000"
+ 1108      2E6300
+ 1109              	.LASF11:
+ 1110 0249 63686172 		.ascii	"char\000"
+ 1110      00
+ 1111              	.LASF32:
+ 1112 024e 43617053 		.ascii	"CapSense_CSD_Start\000"
+ 1112      656E7365 
+ 1112      5F435344 
+ 1112      5F537461 
+ 1112      727400
+ 1113              	.LASF2:
+ 1114 0261 73686F72 		.ascii	"short int\000"
+ 1114      7420696E 
+ 1114      7400
+ 1115              	.LASF4:
+ 1116 026b 6C6F6E67 		.ascii	"long int\000"
+ 1116      20696E74 
+ 1116      00
+ 1117              	.LASF13:
+ 1118 0274 6C6F6E67 		.ascii	"long double\000"
+ 1118      20646F75 
+ 1118      626C6500 
+ 1119              	.LASF0:
+ 1120 0280 7369676E 		.ascii	"signed char\000"
+ 1120      65642063 
+ 1120      68617200 
+ 1121              	.LASF24:
+ 1122 028c 4C45445F 		.ascii	"LED_1_Write\000"
+ 1122      315F5772 
+ARM GAS  C:\Users\ZTIPRI~1\AppData\Local\Temp\cc4LKIPf.s 			page 24
+
+
+ 1122      69746500 
+ 1123              	.LASF30:
+ 1124 0298 43617053 		.ascii	"CapSense_CSD_IsBusy\000"
+ 1124      656E7365 
+ 1124      5F435344 
+ 1124      5F497342 
+ 1124      75737900 
+ 1125              	.LASF31:
+ 1126 02ac 43617053 		.ascii	"CapSense_CSD_CheckIsWidgetActive\000"
+ 1126      656E7365 
+ 1126      5F435344 
+ 1126      5F436865 
+ 1126      636B4973 
+ 1127              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
